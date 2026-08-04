@@ -17,8 +17,23 @@
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   }
+  :root[data-theme="light"]{
+    --bg:#faf9f5;
+    --panel:#ffffff;
+    --border:#d8d2c0;
+    --fg:#191919;
+    --muted:#7d7a70;
+    --accent:#9a8c14;
+    --accent2:#2f7d6e;
+    --red:#b5432a;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;background:var(--bg);color:var(--fg);font-family:var(--sans);overflow:hidden}
+  html,body{height:100%;background:var(--bg);color:var(--fg);font-family:var(--sans);overflow:hidden;
+            transition:background .2s,color .2s;-webkit-text-size-adjust:100%}
+  .theme-toggle{position:fixed;top:1rem;right:1rem;z-index:60;background:var(--panel);
+    border:1px solid var(--border);color:var(--fg);width:42px;height:42px;border-radius:11px;
+    cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;line-height:1}
+  .theme-toggle:hover{border-color:var(--accent)}
   .slide{
     position:absolute;inset:0;display:none;flex-direction:column;
     padding:6vh 7vw;justify-content:center;
@@ -73,10 +88,29 @@
   .hl{color:var(--accent)}
   .num{font-family:var(--mono);color:var(--accent);margin-right:.6rem}
   @media (max-width:900px){
-    h1{font-size:2.2rem}h2{font-size:1.6rem}
+    h1{font-size:2.1rem}h2{font-size:1.5rem;margin-bottom:1.3rem}
     .g2,.g3,.cols{grid-template-columns:1fr}
-    .slide{padding:5vh 6vw;overflow-y:auto;justify-content:flex-start}
-    .trow{grid-template-columns:120px 1fr}
+    .cols{gap:1.6rem}
+    .slide{padding:4.6rem 6vw 8rem;overflow-y:auto;overscroll-behavior:contain;
+           justify-content:flex-start;-webkit-overflow-scrolling:touch}
+    .kicker{font-size:.72rem;letter-spacing:.16em}
+    .sub{font-size:1rem}
+    .quote{font-size:1.3rem}
+    ul.clean li{font-size:.96rem}
+    /* timeline rows stack */
+    .trow{grid-template-columns:1fr;gap:.25rem}
+    .tdate{font-size:.85rem}
+    /* tables reflow instead of squeezing */
+    table,tbody,tr,td{display:block;width:100%}
+    thead{display:none}
+    tr{border-bottom:1px solid var(--border);padding:.7rem 0}
+    tr:last-child{border-bottom:none}
+    td{border:none;padding:.15rem 0;font-size:.9rem}
+    td:first-child{white-space:normal;color:var(--accent);font-size:.72rem;letter-spacing:.14em;
+                   text-transform:uppercase;margin-bottom:.2rem}
+    td:nth-child(2){color:var(--fg);font-weight:600}
+    .nav{bottom:1.5rem;right:1.2rem}
+    .nav button{width:52px;height:52px;font-size:1.2rem}
   }
 </style>
 </head>
@@ -276,8 +310,26 @@
   <button id="next" aria-label="Next slide">→</button>
 </div>
 <div class="foot"><span>AI Governance in Europe · 2026</span><span id="counter"></span></div>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme"></button>
 
 <script>
+  /* theme — dark by default, respects saved choice */
+  (function(){
+    var r=document.documentElement,k='theme',sv=null;
+    try{sv=localStorage.getItem(k)}catch(e){}
+    r.setAttribute('data-theme', sv || 'dark');
+    var b=document.getElementById('themeToggle');
+    function paint(){b.textContent=r.getAttribute('data-theme')==='dark'?'☀':'☾';}
+    paint();
+    b.addEventListener('click',function(){
+      var n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+      r.setAttribute('data-theme',n);
+      try{localStorage.setItem(k,n)}catch(e){}
+      paint();
+    });
+  })();
+
+  /* navigation */
   const slides=[...document.querySelectorAll('.slide')];
   let i=0;
   const bar=document.getElementById('bar'),counter=document.getElementById('counter');
@@ -286,6 +338,7 @@
     slides.forEach((s,k)=>s.classList.toggle('active',k===i));
     bar.style.width=((i+1)/slides.length*100)+'%';
     counter.textContent=(i+1).toString().padStart(2,'0')+' / '+slides.length;
+    slides[i].scrollTop=0;
   }
   document.getElementById('next').onclick=()=>show(i+1);
   document.getElementById('prev').onclick=()=>show(i-1);
@@ -295,9 +348,14 @@
     if(e.key==='Home')show(0);
     if(e.key==='End')show(slides.length-1);
   });
-  let tx=0;
-  addEventListener('touchstart',e=>tx=e.touches[0].clientX);
-  addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-40)show(i+1);if(d>40)show(i-1);});
+  /* swipe: only when clearly horizontal, so vertical scrolling still works */
+  let tx=0,ty=0;
+  addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)<50||Math.abs(dx)<Math.abs(dy)*1.5)return;
+    show(dx<0?i+1:i-1);
+  },{passive:true});
   show(0);
 </script>
 </body>

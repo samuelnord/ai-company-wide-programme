@@ -11,8 +11,17 @@
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   }
+  :root[data-theme="dark"]{
+    --bg:#101214; --ink:#e9e6dd; --muted:#8f8b80; --gold:#d9c95a; --gold-soft:#8d7d2c;
+    --line:#31353a; --panel:#191c1f;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden;
+            transition:background .2s,color .2s;-webkit-text-size-adjust:100%}
+  .theme-toggle{position:fixed;top:1rem;right:1rem;z-index:60;background:var(--panel);
+    border:1.5px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:11px;
+    cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;line-height:1}
+  .theme-toggle:hover{border-color:var(--gold)}
   .slide{position:absolute;inset:0;display:none;flex-direction:column;padding:6vh 7vw;justify-content:center}
   .slide.active{display:flex;animation:f .3s ease}
   @keyframes f{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
@@ -51,7 +60,27 @@
   .pc .m{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.12em}
   .pc h3{font-family:var(--mono);letter-spacing:.1em;font-size:.85rem;color:var(--gold);margin:.15rem 0 .5rem}
   .pc p{font-size:.86rem;color:var(--muted);line-height:1.5}
-  @media(max-width:900px){h1{font-size:2.2rem}h2{font-size:1.5rem}.g2,.g3,.g4,.phase-cards{grid-template-columns:1fr}.slide{padding:5vh 6vw;overflow-y:auto;justify-content:flex-start}}
+  @media(max-width:900px){
+    h1{font-size:2.1rem}h2{font-size:1.45rem;margin-bottom:1.2rem}
+    .g2,.g3,.g4,.phase-cards{grid-template-columns:1fr}
+    .slide{padding:4.6rem 6vw 8rem;overflow-y:auto;overscroll-behavior:contain;
+           justify-content:flex-start;-webkit-overflow-scrolling:touch}
+    .kicker{font-size:.7rem;letter-spacing:.18em}
+    .sub{font-size:1rem}
+    ul.clean li{font-size:.96rem}
+    /* tables reflow instead of squeezing */
+    table,tbody,tr,td{display:block;width:100%}
+    thead{display:none}
+    tr{border-bottom:1.5px solid var(--line);padding:.7rem 0}
+    tr:last-child{border-bottom:none}
+    td{border:none;padding:.15rem 0;font-size:.9rem}
+    td:first-child{white-space:normal;color:var(--gold);font-size:.72rem;letter-spacing:.14em;
+                   text-transform:uppercase;margin-bottom:.2rem}
+    td:nth-child(2){color:var(--ink);font-weight:600}
+    .nav{bottom:1.5rem;right:1.2rem}
+    .nav button{width:52px;height:52px;font-size:1.2rem}
+    .foot{bottom:2.4rem;left:6vw;font-size:.68rem}
+  }
 </style>
 </head>
 <body>
@@ -197,18 +226,42 @@
   <p class="sub">Which department should we visit first?</p>
 </section>
 
-<div class="nav"><button id="prev">←</button><button id="next">→</button></div>
+<div class="nav"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></div>
 <div class="foot">COMPANY-WIDE AI PROGRAMME · <span id="counter"></span></div>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme"></button>
 
 <script>
+  /* theme */
+  (function(){
+    var r=document.documentElement,k='theme',sv=null;
+    try{sv=localStorage.getItem(k)}catch(e){}
+    r.setAttribute('data-theme', sv || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+    var b=document.getElementById('themeToggle');
+    function paint(){b.textContent=r.getAttribute('data-theme')==='dark'?'☀':'☾';}
+    paint();
+    b.addEventListener('click',function(){
+      var n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+      r.setAttribute('data-theme',n);
+      try{localStorage.setItem(k,n)}catch(e){}
+      paint();
+    });
+  })();
+
+  /* navigation */
   const s=[...document.querySelectorAll('.slide')];let i=0;
   const bar=document.getElementById('bar'),c=document.getElementById('counter');
-  function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,k)=>x.classList.toggle('active',k===i));bar.style.width=((i+1)/s.length*100)+'%';c.textContent=(i+1)+' / '+s.length;}
+  function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,k)=>x.classList.toggle('active',k===i));bar.style.width=((i+1)/s.length*100)+'%';c.textContent=(i+1)+' / '+s.length;s[i].scrollTop=0;}
   document.getElementById('next').onclick=()=>show(i+1);
   document.getElementById('prev').onclick=()=>show(i-1);
   addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key==='Home')show(0);if(e.key==='End')show(s.length-1);});
-  let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
-  addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-40)show(i+1);if(d>40)show(i-1);});
+  /* swipe: only when clearly horizontal, so vertical scrolling still works */
+  let tx=0,ty=0;
+  addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)<50||Math.abs(dx)<Math.abs(dy)*1.5)return;
+    show(dx<0?i+1:i-1);
+  },{passive:true});
   show(0);
 </script>
 </body>

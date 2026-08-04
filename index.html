@@ -8,8 +8,21 @@
   :root{--bg:#faf9f5;--ink:#191919;--muted:#8a8578;--gold:#b0950f;--gold-soft:#c9b34a;--line:#d8d2c0;--panel:#fff;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  :root[data-theme="dark"]{--bg:#101214;--ink:#e9e6dd;--muted:#8f8b80;--gold:#d9c95a;
+  --gold-soft:#8d7d2c;--line:#31353a;--panel:#191c1f}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);padding:8vh 6vw;max-width:900px}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);padding:8vh 6vw;max-width:900px;
+  transition:background .2s,color .2s;-webkit-text-size-adjust:100%}
+  .theme-toggle{position:fixed;top:1rem;right:1rem;z-index:60;background:var(--panel);
+  border:1.5px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:11px;
+  cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;line-height:1}
+  .theme-toggle:hover{border-color:var(--gold)}
+  @media(max-width:640px){
+    body{padding:4.5rem 7vw 4rem}
+    h1{font-size:1.95rem}
+    .sub{font-size:.98rem;margin-bottom:2rem}
+    a.card{padding:1.1rem 1.15rem;flex-direction:column;gap:.3rem;align-items:flex-start}
+  }
   .kicker{font-family:var(--mono);font-size:.8rem;letter-spacing:.24em;color:var(--gold);margin-bottom:1rem}
   h1{font-size:2.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.6rem}
   .sub{color:var(--muted);margin-bottom:3rem;font-size:1.05rem}
@@ -37,5 +50,23 @@
 
   <h2>Briefing · 16 slides</h2>
   <a class="card" href="ai-governance-europe-deck.html"><b>AI Governance in Europe — laws &amp; best practices</b><span>EN</span></a>
+
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme"></button>
+<script>
+(function(){
+  var r=document.documentElement,k='theme',s=null;
+  try{s=localStorage.getItem(k)}catch(e){}
+  r.setAttribute('data-theme', s || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  var b=document.getElementById('themeToggle');
+  function paint(){b.textContent=r.getAttribute('data-theme')==='dark'?'☀':'☾';}
+  paint();
+  b.addEventListener('click',function(){
+    var n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+    r.setAttribute('data-theme',n);
+    try{localStorage.setItem(k,n)}catch(e){}
+    paint();
+  });
+})();
+</script>
 </body>
 </html>
