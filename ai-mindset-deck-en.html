@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Mindset in 12 Months — Strategy Deck</title>
+<style>
+  :root{
+    --bg:#faf9f5; --ink:#191919; --muted:#8a8578; --gold:#b0950f; --gold-soft:#c9b34a;
+    --line:#d8d2c0; --panel:#ffffff;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;padding:6vh 7vw;justify-content:center}
+  .slide.active{display:flex;animation:f .3s ease}
+  @keyframes f{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+  .kicker{font-family:var(--mono);font-size:.8rem;letter-spacing:.24em;color:var(--gold);margin-bottom:1.1rem;text-transform:uppercase}
+  h1{font-size:3.4rem;line-height:1.08;font-weight:700;max-width:22ch;letter-spacing:-.02em}
+  h1 em{font-style:normal;color:var(--gold)}
+  h2{font-size:2.1rem;line-height:1.15;font-weight:700;margin-bottom:1.8rem;max-width:30ch;letter-spacing:-.01em}
+  h3{font-size:1rem;font-weight:700;margin-bottom:.35rem}
+  .sub{color:var(--muted);font-size:1.12rem;margin-top:1.1rem;max-width:60ch;line-height:1.6}
+  .grid{display:grid;gap:1rem}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--panel);border:1.5px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem}
+  .card.hot{border-color:var(--gold-soft)}
+  .card p{color:var(--muted);font-size:.92rem;line-height:1.55}
+  .tag{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;padding:.18rem .55rem;border:1px solid var(--gold-soft);border-radius:999px;color:var(--gold);margin-bottom:.65rem}
+  ul.clean{list-style:none}
+  ul.clean li{padding:.55rem 0 .55rem 1.7rem;position:relative;font-size:1.04rem;line-height:1.55;border-bottom:1px dashed var(--line)}
+  ul.clean li:last-child{border-bottom:none}
+  ul.clean li::before{content:"→";position:absolute;left:0;color:var(--gold);font-family:var(--mono)}
+  ul.clean li span{color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:.93rem}
+  th{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.55rem .7rem;border-bottom:1.5px solid var(--ink)}
+  td{padding:.55rem .7rem;border-bottom:1px dashed var(--line);color:var(--muted);line-height:1.4;vertical-align:top}
+  td:first-child{color:var(--ink);font-weight:600;white-space:nowrap;font-family:var(--mono);font-size:.82rem}
+  td b{color:var(--gold)}
+  .divnum{font-family:var(--mono);font-size:5.5rem;color:var(--gold);opacity:.3;line-height:1}
+  .quote{font-size:1.65rem;line-height:1.45;font-weight:500;max-width:36ch;border-left:3px solid var(--gold);padding-left:1.5rem}
+  .num{font-family:var(--mono);color:var(--gold);margin-right:.6rem;font-size:.9rem}
+  .small{font-size:.84rem;color:var(--muted);margin-top:1.3rem;line-height:1.5}
+  .nav{position:fixed;bottom:4.5vh;right:7vw;display:flex;gap:.5rem;z-index:10}
+  .nav button{background:var(--panel);border:1.5px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:10px;font-size:1.05rem;cursor:pointer}
+  .nav button:hover{border-color:var(--gold)}
+  .bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .3s;z-index:20}
+  .foot{position:absolute;bottom:4.5vh;left:7vw;font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.1em}
+  .phase-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  .pc{background:var(--panel);border:1.5px solid var(--gold-soft);border-radius:12px;padding:1.1rem 1.15rem}
+  .pc .m{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.12em}
+  .pc h3{font-family:var(--mono);letter-spacing:.1em;font-size:.85rem;color:var(--gold);margin:.15rem 0 .5rem}
+  .pc p{font-size:.86rem;color:var(--muted);line-height:1.5}
+  @media(max-width:900px){h1{font-size:2.2rem}h2{font-size:1.5rem}.g2,.g3,.g4,.phase-cards{grid-template-columns:1fr}.slide{padding:5vh 6vw;overflow-y:auto;justify-content:flex-start}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+
+<!-- 1 -->
+<section class="slide active">
+  <div class="kicker">Company-wide AI Programme · Business ↔ IT · 2026</div>
+  <h1>From AI tools to an <em>AI mindset</em> — in 12 months</h1>
+  <p class="sub">A service-manager approach: identify, evaluate and implement AI use cases with every department — and anchor AI sustainably through change management, enablement and training.</p>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="kicker">01 · The role</div>
+  <h2>The interface between business and IT</h2>
+  <div class="grid g3">
+    <div class="card hot"><span class="tag">THE ROLE OWNS</span>
+      <ul class="clean">
+        <li>The use-case funnel: identify → evaluate → implement</li>
+        <li>Change management, enablement &amp; training</li>
+        <li>Guardrails, champion network &amp; round table</li>
+      </ul>
+    </div>
+    <div class="card"><span class="tag">BUSINESS OWNS</span>
+      <ul class="clean">
+        <li>Use cases, data &amp; domain knowledge</li>
+        <li>The pilot goal and its metric</li>
+        <li>Adoption — the story is theirs</li>
+      </ul>
+    </div>
+    <div class="card"><span class="tag">IT OWNS</span>
+      <ul class="clean">
+        <li>Platform, integration &amp; security</li>
+        <li>Approved tool operation</li>
+        <li>Data access &amp; architecture</li>
+      </ul>
+    </div>
+  </div>
+  <p class="sub">A service manager, not a gatekeeper: both sides get supported — business articulates the need, IT delivers safely, the role translates and keeps momentum. Culture sticks when every department has its own win to defend.</p>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="kicker">02 · The 12 months</div>
+  <h2>Four phases, one ticket</h2>
+  <div class="phase-cards">
+    <div class="pc"><span class="m">M1–2</span><h3>01 IDENTIFY</h3><p>Listening tour through all departments, business and IT together. Pain first, no tech. Output: use-case backlog.</p></div>
+    <div class="pc"><span class="m">M3–5</span><h3>02 EVALUATE &amp; PILOT</h3><p>Backlog ranked by value ≥ effort. 3 lighthouse pilots, ≤ 90 days, one metric each. Champions appointed, guardrails published.</p></div>
+    <div class="pc"><span class="m">M6–9</span><h3>03 IMPLEMENT</h3><p>Monthly decision-only round table. AI academy runs. Proven pilots become copyable playbooks.</p></div>
+    <div class="pc"><span class="m">M10–12</span><h3>04 ANCHOR</h3><p>AI objective in every department plan. Lightweight governance board. Ideas flow bottom-up.</p></div>
+  </div>
+  <p class="sub">Details on one page → see the accompanying overview visual.</p>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="kicker">03 · Approaching departments</div>
+  <h2>The conversation playbook: pain first, tool later</h2>
+  <ul class="clean">
+    <li><span class="num">01</span><b>Listen</b> — <span>"What eats your week?" Sit in their meetings, walk the line. Never open with AI.</span></li>
+    <li><span class="num">02</span><b>Show</b> — <span>within 2 weeks, a 45-minute demo on their real data. Seeing their own RFQ answered beats any slide.</span></li>
+    <li><span class="num">03</span><b>Co-create</b> — <span>pilot built with their people, one measurable goal, 90 days. They name it.</span></li>
+    <li><span class="num">04</span><b>Hand over</b> — <span>the champion presents the result to leadership. You sit in the audience.</span></li>
+  </ul>
+  <div class="grid g2" style="margin-top:1.4rem">
+    <div class="card hot"><h3>Do</h3><p>Speak their KPIs (scrap rate, OTD, quote turnaround) · celebrate small wins loudly · make trying safe.</p></div>
+    <div class="card"><h3>Don't</h3><p>Lead with tools or hype · promise headcount savings · centralise every decision · punish failed experiments.</p></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="kicker">03 · Approaching departments</div>
+  <h2>What to discuss where — starting points (manufacturing example)</h2>
+  <table>
+    <tr><th>Dept</th><th>Opening pain question</th><th>Candidate AI use cases</th></tr>
+    <tr><td>R&amp;D</td><td>Where does documentation slow design?</td><td>Requirements analysis, spec drafting, test-report summaries</td></tr>
+    <tr><td>PROD</td><td>What stops the line unplanned?</td><td><b>Predictive maintenance</b>, shift-handover summaries, deviation logs</td></tr>
+    <tr><td>QUALITY</td><td>Where do defects hide longest?</td><td><b>Visual inspection</b>, 8D-report drafting, claim clustering</td></tr>
+    <tr><td>SALES</td><td>How long does a quote take?</td><td>RFQ analysis, quote drafting, customer-spec comparison</td></tr>
+    <tr><td>PURCHASING</td><td>Which supplier surprises hurt?</td><td>Supplier-risk screening, price benchmarking, contract review</td></tr>
+    <tr><td>HR</td><td>What drowns you in admin?</td><td>Job-ad drafting, onboarding assistant — <b>people-decisions stay high-risk: human decides</b></td></tr>
+    <tr><td>FINANCE</td><td>Where is forecasting manual?</td><td>Cost forecasting, invoice extraction, variance commentary</td></tr>
+    <tr><td>IT</td><td>What do teams ask for weekly?</td><td>Coding copilots, internal knowledge assistant, the platform itself</td></tr>
+  </table>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="kicker">04 · Culture mechanics</div>
+  <h2>How the mindset actually shifts</h2>
+  <div class="grid g3">
+    <div class="card hot"><h3>Champions network</h3><p>One volunteer per department, 20% protected time, monthly exchange. They translate — you don't scale, they do.</p></div>
+    <div class="card hot"><h3>Visible quick wins</h3><p>Every pilot ≤ 90 days with one number attached. Wins are shown at town halls — by the team, not the strategist.</p></div>
+    <div class="card hot"><h3>Safe to try</h3><p>Weekly open "AI hour", sandbox with approved tools, no-blame reviews of failed experiments. Failure is data.</p></div>
+  </div>
+  <p class="sub">Rule of thumb: after month 6, more use-case ideas should come from departments than from the service manager. That's the signal culture is moving.</p>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="kicker">05 · Guardrails</div>
+  <h2>Governed, not slowed — the EU AI Act reality for a manufacturer</h2>
+  <ul class="clean">
+    <li><b>Most factory &amp; office use cases are minimal/limited risk</b> — <span>copilots, drafting, inspection support: transparency duties (live since Aug 2026), no heavy conformity work.</span></li>
+    <li><b>The high-risk lane is narrow but real</b> — <span>HR screening &amp; people analytics fall under Annex III: obligations bind 2 Dec 2027. Design human-decides workflows now.</span></li>
+    <li><b>Three artefacts cover 80%</b> — <span>an AI use policy, an approved-tool list, and role-based training (Art. 4 AI literacy — already a duty).</span></li>
+    <li><b>One register, every system</b> — <span>purpose, owner, risk tier, data. No entry, no rollout.</span></li>
+  </ul>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="kicker">06 · Measuring</div>
+  <h2>KPIs that prove mindset, not just usage</h2>
+  <div class="grid g4">
+    <div class="card hot"><span class="tag">ADOPTION</span><p>% of staff using approved AI tools weekly. Target: 60% by M12.</p></div>
+    <div class="card hot"><span class="tag">CAPABILITY</span><p>% trained per role tier. Target: 80% basics, 100% of champions advanced.</p></div>
+    <div class="card hot"><span class="tag">VALUE</span><p>Live use cases per department (≥1) and hours saved / quality gains per pilot.</p></div>
+    <div class="card hot"><span class="tag">MOMENTUM</span><p>Bottom-up ideas per quarter — the culture metric. Should overtake top-down by M6.</p></div>
+  </div>
+  <p class="sub">Reported monthly on one page at the round table. No dashboards nobody reads.</p>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="kicker">07 · Asks</div>
+  <h2>What this needs to start</h2>
+  <ul class="clean">
+    <li><span class="num">1</span><b>An executive sponsor</b> — <span>opens doors for the listening tour and stands behind the champions.</span></li>
+    <li><span class="num">2</span><b>One champion per department</b> — <span>volunteer, 20% time protected by their lead.</span></li>
+    <li><span class="num">3</span><b>A small pilot budget</b> — <span>3 pilots × 90 days; tooling and time, not consultants.</span></li>
+    <li><span class="num">4</span><b>One hour per month</b> — <span>the decision-only round table with department leads.</span></li>
+  </ul>
+  <p class="sub">Next step: kickoff of the listening tour — first two departments in the next two weeks.</p>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="divnum">Q&amp;A</div>
+  <h1>Discussion</h1>
+  <p class="sub">Which department should we visit first?</p>
+</section>
+
+<div class="nav"><button id="prev">←</button><button id="next">→</button></div>
+<div class="foot">COMPANY-WIDE AI PROGRAMME · <span id="counter"></span></div>
+
+<script>
+  const s=[...document.querySelectorAll('.slide')];let i=0;
+  const bar=document.getElementById('bar'),c=document.getElementById('counter');
+  function show(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,k)=>x.classList.toggle('active',k===i));bar.style.width=((i+1)/s.length*100)+'%';c.textContent=(i+1)+' / '+s.length;}
+  document.getElementById('next').onclick=()=>show(i+1);
+  document.getElementById('prev').onclick=()=>show(i-1);
+  addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);if(e.key==='Home')show(0);if(e.key==='End')show(s.length-1);});
+  let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+  addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-40)show(i+1);if(d>40)show(i-1);});
+  show(0);
+</script>
+</body>
+</html>
