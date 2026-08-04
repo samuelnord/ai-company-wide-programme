@@ -3,29 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Governance in Europe — 2026</title>
+<title>AI Governance in Europe · 2026</title>
 <style>
   :root{
-    --bg:#0b0d0f;
-    --panel:#15181c;
-    --border:#2c3138;
-    --fg:#e8eaec;
-    --muted:#8b9196;
-    --accent:#d9d047;
-    --accent2:#5db8a8;
-    --red:#d97862;
+    --bg:#0f1215;
+    --panel:#171b20;
+    --border:#282e35;
+    --fg:#e8eaed;
+    --muted:#8b939c;
+    --accent:#6fa3d6;
+    --accent2:#5fb3a3;
+    --red:#d9954a;
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   }
   :root[data-theme="light"]{
-    --bg:#faf9f5;
+    --bg:#f6f7f9;
     --panel:#ffffff;
-    --border:#d8d2c0;
-    --fg:#191919;
-    --muted:#7d7a70;
-    --accent:#9a8c14;
+    --border:#d3d8de;
+    --fg:#14181d;
+    --muted:#767d86;
+    --accent:#2f5d8a;
     --accent2:#2f7d6e;
-    --red:#b5432a;
+    --red:#a86a1b;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;background:var(--bg);color:var(--fg);font-family:var(--sans);overflow:hidden;
@@ -121,7 +121,7 @@
 <!-- 1 · Title -->
 <section class="slide active">
   <div class="kicker">AI Governance · Europe · August 2026</div>
-  <h1>How to Govern AI in a European Company — <span class="hl">Right Now</span></h1>
+  <h1>How to Govern AI in a European Company, <span class="hl">Right Now</span></h1>
   <p class="sub">Best practices and legal obligations under the EU AI Act, the Digital Omnibus, and the adjacent EU digital rulebook.</p>
 </section>
 
@@ -131,38 +131,38 @@
   <h2>August 2026 is not a drill</h2>
   <div class="grid g3">
     <div class="card"><span class="tag warn">Live</span><div class="big">2 Aug 2026</div><p>The AI Act's general applicability date. Article 50 transparency duties apply, and the Commission's enforcement powers over general-purpose AI (GPAI) providers activate.</p></div>
-    <div class="card"><span class="tag warn">Fines</span><div class="big">€35M / 7%</div><p>Maximum penalty for prohibited AI practices — banned since Feb 2025. Other violations: up to €15M or 3% of global turnover.</p></div>
-    <div class="card"><span class="tag ok">Relief</span><div class="big">Dec 2027</div><p>The Digital Omnibus deferred most high-risk obligations from Aug 2026 to 2 Dec 2027 (Annex III) and 2 Aug 2028 (Annex I products). Breathing room — not a pardon.</p></div>
+    <div class="card"><span class="tag warn">Fines</span><div class="big">€35M / 7%</div><p>Maximum penalty for prohibited AI practices, banned since Feb 2025. Other violations: up to €15M or 3% of global turnover.</p></div>
+    <div class="card"><span class="tag ok">Relief</span><div class="big">Dec 2027</div><p>The Digital Omnibus deferred most high-risk obligations from Aug 2026 to 2 Dec 2027 (Annex III) and 2 Aug 2028 (Annex I products). Breathing room, not a pardon.</p></div>
   </div>
-  <p class="sub">Everything else — GDPR, DORA, NIS2, the Data Act — still applies to your AI systems on top.</p>
+  <p class="sub">Everything else (GDPR, DORA, NIS2, the Data Act) still applies to your AI systems on top.</p>
 </section>
 
 <!-- 3 · Timeline -->
 <section class="slide">
   <div class="kicker">01 · The legal landscape</div>
-  <h2>EU AI Act — where we are on the timeline</h2>
+  <h2>EU AI Act: where we are on the timeline</h2>
   <div class="timeline">
     <div class="trow"><span class="tdate done">1 Aug 2024</span><p><b>Entry into force.</b> The clock starts.</p></div>
     <div class="trow"><span class="tdate done">2 Feb 2025</span><p><b>Prohibitions + AI literacy (Art. 4).</b> Social scoring, manipulative AI, most real-time biometric ID banned. Staff must be adequately AI-literate.</p></div>
     <div class="trow"><span class="tdate done">2 Aug 2025</span><p><b>GPAI obligations + governance.</b> Model providers owe documentation, copyright policy, training-data summaries. National authorities designated.</p></div>
     <div class="trow"><span class="tdate now">2 Aug 2026</span><p><b>General applicability.</b> Transparency (Art. 50): disclose chatbots, label AI-generated content and deepfakes. GPAI enforcement powers and fines go live.</p></div>
-    <div class="trow"><span class="tdate">2 Dec 2027</span><p><b>High-risk, Annex III</b> (HR, credit, education, critical infrastructure…) — deferred by the Digital Omnibus from Aug 2026.</p></div>
-    <div class="trow"><span class="tdate">2 Aug 2028</span><p><b>High-risk, Annex I</b> — AI embedded in regulated products (medical devices, machinery, vehicles).</p></div>
+    <div class="trow"><span class="tdate">2 Dec 2027</span><p><b>High-risk, Annex III</b> (HR, credit, education, critical infrastructure…), deferred by the Digital Omnibus from Aug 2026.</p></div>
+    <div class="trow"><span class="tdate">2 Aug 2028</span><p><b>High-risk, Annex I</b>: AI embedded in regulated products (medical devices, machinery, vehicles).</p></div>
   </div>
 </section>
 
 <!-- 4 · Risk tiers -->
 <section class="slide">
   <div class="kicker">01 · The legal landscape</div>
-  <h2>One law, four risk tiers — know where each system sits</h2>
+  <h2>One law, four risk tiers: know where each system sits</h2>
   <table>
     <tr><th>Tier</th><th>Examples</th><th>What the law demands</th></tr>
     <tr><td>Prohibited</td><td>Social scoring, emotion recognition at work/school, manipulative techniques</td><td><b>Banned since Feb 2025.</b> €35M / 7% turnover exposure.</td></tr>
-    <tr><td>High-risk</td><td>CV screening, credit scoring, exam grading, safety components</td><td>Risk management, data governance, logging, human oversight, conformity assessment — <b>by Dec 2027 / Aug 2028</b>.</td></tr>
-    <tr><td>Limited risk</td><td>Chatbots, generated images/audio, deepfakes</td><td>Transparency: tell people it's AI, mark synthetic content — <b>live now</b>.</td></tr>
-    <tr><td>Minimal risk</td><td>Spam filters, recommender internals, coding assistants</td><td>No AI Act duties — but GDPR, IP and sector rules still apply.</td></tr>
+    <tr><td>High-risk</td><td>CV screening, credit scoring, exam grading, safety components</td><td>Risk management, data governance, logging, human oversight, conformity assessment, <b>by Dec 2027 / Aug 2028</b>.</td></tr>
+    <tr><td>Limited risk</td><td>Chatbots, generated images/audio, deepfakes</td><td>Transparency: tell people it's AI, mark synthetic content, <b>live now</b>.</td></tr>
+    <tr><td>Minimal risk</td><td>Spam filters, recommender internals, coding assistants</td><td>No AI Act duties, but GDPR, IP and sector rules still apply.</td></tr>
   </table>
-  <p class="small">Most companies are <b>deployers</b>, not providers — lighter duties, but fine-tuning or white-labelling a model can flip you into the provider role.</p>
+  <p class="small">Most companies are <b>deployers</b>, not providers, so lighter duties, but fine-tuning or white-labelling a model can flip you into the provider role.</p>
 </section>
 
 <!-- 5 · Omnibus -->
@@ -170,17 +170,17 @@
   <div class="kicker">01 · The legal landscape</div>
   <h2>What the 2026 Digital Omnibus actually changed</h2>
   <ul class="clean">
-    <li><b>High-risk deadlines deferred</b> — <span>Annex III to 2 Dec 2027; Annex I products to 2 Aug 2028. Approved by Parliament (16 June) and Council (29 June 2026).</span></li>
-    <li><b>SME &amp; small mid-cap relief</b> — <span>simplified procedures and lower fines for companies under ~750 employees / €150M turnover.</span></li>
-    <li><b>GDPR opening for bias testing</b> — <span>special-category data may be processed to detect and correct bias, under strict necessity, pseudonymisation and deletion safeguards.</span></li>
-    <li><b>Simplification, not deregulation</b> — <span>prohibitions, transparency and GPAI enforcement were not delayed. Plan against the new dates; don't bet on further slippage.</span></li>
+    <li><b>High-risk deadlines deferred</b>: <span>Annex III to 2 Dec 2027; Annex I products to 2 Aug 2028. Approved by Parliament (16 June) and Council (29 June 2026).</span></li>
+    <li><b>SME &amp; small mid-cap relief</b>: <span>simplified procedures and lower fines for companies under ~750 employees / €150M turnover.</span></li>
+    <li><b>GDPR opening for bias testing</b>: <span>special-category data may be processed to detect and correct bias, under strict necessity, pseudonymisation and deletion safeguards.</span></li>
+    <li><b>Simplification, not deregulation</b>: <span>prohibitions, transparency and GPAI enforcement were not delayed. Plan against the new dates; don't bet on further slippage.</span></li>
   </ul>
 </section>
 
 <!-- 6 · Adjacent laws -->
 <section class="slide">
   <div class="kicker">01 · The legal landscape</div>
-  <h2>The AI Act is one layer — the stack is bigger</h2>
+  <h2>The AI Act is one layer: the stack is bigger</h2>
   <div class="grid g2">
     <div class="card"><h3>GDPR</h3><p>Legal basis for training and inference data, DPIAs for high-risk processing, automated-decision rights (Art. 22). Your AI governance must be joined to your privacy programme, not parallel to it.</p></div>
     <div class="card"><h3>DORA &amp; NIS2</h3><p>Financial entities and essential services must fold AI vendors into ICT third-party risk management and incident reporting. An LLM API is a critical ICT service.</p></div>
@@ -193,21 +193,21 @@
 <section class="slide">
   <div class="divnum">02</div>
   <h1>Best Practices</h1>
-  <p class="sub">What good AI governance looks like operationally — regardless of where the deadlines land.</p>
+  <p class="sub">What good AI governance looks like operationally, regardless of where the deadlines land.</p>
 </section>
 
 <!-- 8 · Frameworks -->
 <section class="slide">
   <div class="kicker">02 · Best practices</div>
-  <h2>Don't invent a framework — compose one</h2>
+  <h2>Don't invent a framework: compose one</h2>
   <table>
     <tr><th>Framework</th><th>Role</th><th>Nature</th></tr>
     <tr><td>EU AI Act</td><td>The legal floor for any EU market exposure</td><td>Binding law, financial penalties</td></tr>
-    <tr><td>ISO/IEC 42001</td><td>Certifiable AI management system (AIMS) — proves governance to customers and auditors</td><td>Voluntary, certifiable</td></tr>
+    <tr><td>ISO/IEC 42001</td><td>Certifiable AI management system (AIMS) that proves governance to customers and auditors</td><td>Voluntary, certifiable</td></tr>
     <tr><td>NIST AI RMF</td><td>Operational risk vocabulary: Govern · Map · Measure · Manage</td><td>Voluntary guidance</td></tr>
     <tr><td>OECD principles</td><td>Ethical baseline referenced by regulators</td><td>Principles</td></tr>
   </table>
-  <p class="small">The common 2026 pattern: one <b>cross-framework register</b> per AI system, mapping each control once to AI Act articles, ISO 42001 clauses and NIST functions — instead of three parallel compliance programmes.</p>
+  <p class="small">The common 2026 pattern: one <b>cross-framework register</b> per AI system, mapping each control once to AI Act articles, ISO 42001 clauses and NIST functions, instead of three parallel compliance programmes.</p>
 </section>
 
 <!-- 9 · Operating model -->
@@ -232,10 +232,10 @@
     </div>
     <div>
       <ul class="clean">
-        <li><b>Inventory every AI system</b> — <span>including SaaS embedded AI, browser copilots and that "experiment" finance runs on a personal API key.</span></li>
+        <li><b>Inventory every AI system</b>: <span>including SaaS embedded AI, browser copilots and that "experiment" finance runs on a personal API key.</span></li>
         <li><b>Record per system:</b> <span>purpose, owner, risk tier, legal basis, data used, model/provider, human-oversight design, budget.</span></li>
-        <li><b>Gate at intake</b> — <span>no register entry, no deployment, no spend. Wire the register into procurement and the cloud vending process.</span></li>
-        <li><b>Review on change</b> — <span>model swap, new data, new audience → re-classify.</span></li>
+        <li><b>Gate at intake</b>: <span>no register entry, no deployment, no spend. Wire the register into procurement and the cloud vending process.</span></li>
+        <li><b>Review on change</b>: <span>model swap, new data, new audience → re-classify.</span></li>
       </ul>
     </div>
   </div>
@@ -244,23 +244,23 @@
 <!-- 11 · Lifecycle -->
 <section class="slide">
   <div class="kicker">02 · Best practices</div>
-  <h2>Shift governance left — into design, not after deployment</h2>
+  <h2>Shift governance left: into design, not after deployment</h2>
   <ul class="clean">
-    <li><span class="num">01</span><b>Intake &amp; classification</b> — <span>risk-tier and DPIA screening at the idea stage, in the same form that requests budget.</span></li>
-    <li><span class="num">02</span><b>Design controls</b> — <span>data governance, bias testing (now GDPR-permitted under safeguards), human-in-the-loop points, red-team plan.</span></li>
-    <li><span class="num">03</span><b>Pre-launch gate</b> — <span>transparency notices, content labelling, logging switched on, fallback path defined.</span></li>
-    <li><span class="num">04</span><b>Run</b> — <span>monitor drift, incidents, cost per outcome; feed serious incidents into your reporting duties.</span></li>
-    <li><span class="num">05</span><b>Retire</b> — <span>decommission dates by default — especially sandboxes and agent experiments.</span></li>
+    <li><span class="num">01</span><b>Intake &amp; classification</b>: <span>risk-tier and DPIA screening at the idea stage, in the same form that requests budget.</span></li>
+    <li><span class="num">02</span><b>Design controls</b>: <span>data governance, bias testing (now GDPR-permitted under safeguards), human-in-the-loop points, red-team plan.</span></li>
+    <li><span class="num">03</span><b>Pre-launch gate</b>: <span>transparency notices, content labelling, logging switched on, fallback path defined.</span></li>
+    <li><span class="num">04</span><b>Run</b>: <span>monitor drift, incidents, cost per outcome; feed serious incidents into your reporting duties.</span></li>
+    <li><span class="num">05</span><b>Retire</b>: <span>decommission dates by default, especially sandboxes and agent experiments.</span></li>
   </ul>
 </section>
 
 <!-- 12 · Literacy -->
 <section class="slide">
   <div class="kicker">02 · Best practices</div>
-  <h2>AI literacy is a legal duty — and your cheapest control</h2>
+  <h2>AI literacy is a legal duty and your cheapest control</h2>
   <div class="grid g2">
-    <div class="card"><h3>What Article 4 requires</h3><p>Since Feb 2025, providers and deployers must ensure staff operating AI have a sufficient level of AI literacy — proportionate to context and the people affected.</p></div>
-    <div class="card"><h3>What good looks like</h3><p>Role-based training: builders get evaluation and red-teaming; users get prompts, limits and escalation; leadership gets risk and accountability. Track completion — it's evidence.</p></div>
+    <div class="card"><h3>What Article 4 requires</h3><p>Since Feb 2025, providers and deployers must ensure staff operating AI have a sufficient level of AI literacy, proportionate to context and the people affected.</p></div>
+    <div class="card"><h3>What good looks like</h3><p>Role-based training: builders get evaluation and red-teaming; users get prompts, limits and escalation; leadership gets risk and accountability. Track completion, it's evidence.</p></div>
   </div>
   <p class="sub">Trained people are also the control that catches what tooling misses: hallucinated citations, leaked data in prompts, quiet scope creep from assistant to decision-maker.</p>
 </section>
@@ -277,7 +277,7 @@
   <div class="kicker">03 · The plan</div>
   <h2>First 90 days</h2>
   <div class="grid g3">
-    <div class="card"><span class="tag">Days 1–30</span><h3>See</h3><p>Stand up the governance board. Build the AI register from cloud bills, SSO logs and a team survey. Screen for prohibited practices and unlabelled chatbots/content — those are live exposures.</p></div>
+    <div class="card"><span class="tag">Days 1–30</span><h3>See</h3><p>Stand up the governance board. Build the AI register from cloud bills, SSO logs and a team survey. Screen for prohibited practices and unlabelled chatbots/content: those are live exposures.</p></div>
     <div class="card"><span class="tag">Days 31–60</span><h3>Sort</h3><p>Risk-classify everything found. Fix Article 50 transparency gaps. Map which systems will be high-risk in Dec 2027 and open a workplan per system. Launch role-based AI literacy training.</p></div>
     <div class="card"><span class="tag">Days 61–90</span><h3>Systematise</h3><p>Wire the register into intake and procurement. Publish the approved-model catalogue and paved-road templates. Choose the framework spine (ISO 42001 as target, NIST as method) and baseline against it.</p></div>
   </div>
@@ -289,11 +289,11 @@
   <div class="kicker">04 · Takeaways</div>
   <h2>Five things to remember</h2>
   <ul class="clean">
-    <li><span class="num">1</span><b>Transparency and GPAI enforcement are live now</b> — <span>the Omnibus delayed high-risk duties, nothing else.</span></li>
-    <li><span class="num">2</span><b>Deadlines moved; the direction didn't</b> — <span>use Dec 2027 to build properly, not to wait.</span></li>
-    <li><span class="num">3</span><b>The register is the spine</b> — <span>inventory first, everything else attaches to it.</span></li>
-    <li><span class="num">4</span><b>Central rules, federated ownership</b> — <span>paved roads beat approval committees.</span></li>
-    <li><span class="num">5</span><b>Compose frameworks</b> — <span>AI Act as floor, ISO 42001 as system, NIST as method — one control set, mapped three ways.</span></li>
+    <li><span class="num">1</span><b>Transparency and GPAI enforcement are live now</b>: <span>the Omnibus delayed high-risk duties, nothing else.</span></li>
+    <li><span class="num">2</span><b>Deadlines moved; the direction didn't</b>: <span>use Dec 2027 to build properly, not to wait.</span></li>
+    <li><span class="num">3</span><b>The register is the spine</b>: <span>inventory first, everything else attaches to it.</span></li>
+    <li><span class="num">4</span><b>Central rules, federated ownership</b>: <span>paved roads beat approval committees.</span></li>
+    <li><span class="num">5</span><b>Compose frameworks</b>: <span>AI Act as floor, ISO 42001 as system, NIST as method: one control set, mapped three ways.</span></li>
   </ul>
 </section>
 
@@ -302,7 +302,7 @@
   <div class="divnum">05</div>
   <h1>Q&amp;A</h1>
   <p class="sub">Discussion.</p>
-  <p class="small">Key sources: EU AI Act implementation timeline (artificialintelligenceact.eu · ai-act-service-desk.ec.europa.eu) · Digital Omnibus agreement, June 2026 (Gibson Dunn, Orrick, DLA Piper analyses) · ISO/IEC 42001 · NIST AI RMF. Prepared August 2026 — verify dates before relying on them; this deck is not legal advice.</p>
+  <p class="small">Key sources: EU AI Act implementation timeline (artificialintelligenceact.eu · ai-act-service-desk.ec.europa.eu) · Digital Omnibus agreement, June 2026 (Gibson Dunn, Orrick, DLA Piper analyses) · ISO/IEC 42001 · NIST AI RMF. Prepared August 2026. Verify dates before relying on them; this deck is not legal advice.</p>
 </section>
 
 <div class="nav">
@@ -313,7 +313,7 @@
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme"></button>
 
 <script>
-  /* theme — dark by default, respects saved choice */
+  /* theme: dark by default, respects saved choice */
   (function(){
     var r=document.documentElement,k='theme',sv=null;
     try{sv=localStorage.getItem(k)}catch(e){}
