@@ -5,35 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KI-Mindset in 12 Monaten · Unternehmensweites Programm</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
   :root{
-    --bg:#f6f7f9; --ink:#14181d; --muted:#767d86; --gold:#2f5d8a; --gold-soft:#c2c9d2;
-    --line:#d3d8de; --panel:#ffffff;
-    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --bg:oklch(97% 0.004 250); --ink:oklch(22% 0.01 250); --muted:oklch(48% 0.014 250);
+    --gold:oklch(72% 0.16 235); --gold-soft:oklch(86% 0.03 235); --secondary:oklch(74% 0.19 48);
+    --nogo:oklch(68% 0.2 22);
+    --line:oklch(88% 0.008 250); --panel:oklch(99% 0.002 250);
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',monospace;
+    --sans:'Space Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   }
   :root[data-theme="dark"]{
-    --bg:#0f1215; --ink:#e8eaed; --muted:#8b939c; --gold:#6fa3d6; --gold-soft:#39414a;
-    --line:#282e35; --panel:#171b20;
+    --bg:oklch(23% 0.012 250); --ink:oklch(93% 0.004 250); --muted:oklch(70% 0.012 250);
+    --gold:oklch(76% 0.19 235); --gold-soft:oklch(40% 0.05 235); --secondary:oklch(78% 0.21 48);
+    --nogo:oklch(74% 0.23 22);
+    --line:oklch(36% 0.012 250); --panel:oklch(27% 0.014 250);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);padding:3.2rem 4vw 4rem;
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+       max-width:1440px;margin:0 auto;padding:3.2rem clamp(1.5rem,4vw,4rem) 4rem;
        transition:background .2s,color .2s;-webkit-text-size-adjust:100%}
   .theme-toggle{position:fixed;top:1rem;right:1rem;z-index:60;background:var(--panel);
     border:1.5px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:11px;
     cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;line-height:1}
   .theme-toggle:hover{border-color:var(--gold)}
+  html{scroll-behavior:smooth}
   .topnav{font-family:var(--mono);font-size:.8rem;letter-spacing:.25em;color:var(--muted);display:flex;gap:2.2rem;margin-bottom:3.5rem}
-  .topnav b{color:var(--gold);font-weight:600}
+  .topnav a{color:var(--muted);text-decoration:none;font-weight:inherit;transition:color .15s}
+  .topnav a:hover{color:var(--ink)}
+  .topnav a.active{color:var(--gold);font-weight:600}
   .head{display:grid;grid-template-columns:360px 1fr;gap:3rem;align-items:end;margin-bottom:2.6rem}
   h1{font-size:3.2rem;line-height:1.05;font-weight:700;letter-spacing:-.02em}
   h1 em{font-style:normal;color:var(--gold)}
   .sub{font-family:var(--mono);font-size:.82rem;color:var(--muted);line-height:1.8;letter-spacing:.06em}
-  .phases{display:grid;grid-template-columns:1.1fr 1.15fr 1.15fr 1fr;gap:0;border-top:1px dashed var(--line)}
-  .phase{padding:1.6rem 1.4rem 2rem;border-right:1px dashed var(--line)}
+  .phases{display:grid;grid-template-columns:1fr 1.05fr .95fr 1.05fr .95fr;gap:0;border-top:1px dashed var(--line)}
+  .phase{padding:1.6rem 1.4rem 2rem;border-right:1px dashed var(--line);scroll-margin-top:2rem}
   .phase:last-child{border-right:none}
   .plabel{font-family:var(--mono);font-size:.82rem;letter-spacing:.22em;color:var(--gold);margin-bottom:.2rem}
   .pmonths{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.12em;margin-bottom:1.4rem}
-  .box{background:var(--panel);border:1.6px solid var(--gold-soft);border-radius:12px;padding:.85rem 1rem;margin-bottom:.95rem;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .box{background:var(--panel);border:1.6px solid var(--gold-soft);border-radius:10px;padding:.85rem 1rem;margin-bottom:.95rem;box-shadow:0 1px 2px oklch(0% 0 0 / 0.06)}
   .box h4{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;font-weight:600;margin-bottom:.3rem}
   .box p{font-family:var(--mono);font-size:.7rem;color:var(--muted);line-height:1.55;letter-spacing:.03em}
   .box p b{color:var(--ink);font-weight:600}
@@ -45,11 +54,11 @@
   .diamond{width:120px;height:120px;margin:.4rem auto 1rem;position:relative}
   .diamond .shape{position:absolute;inset:10px;transform:rotate(45deg);background:var(--panel);border:1.6px solid var(--gold);border-radius:10px}
   .diamond .txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-align:center}
-  .diamond .txt b{color:var(--gold)}
+  .diamond .txt b{color:var(--secondary)}
   .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.95rem}
   .chip{width:46px;height:46px;border:1.4px solid var(--line);border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.58rem;color:var(--ink)}
   .chips-cap{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;color:var(--muted);margin-bottom:.5rem}
-  .outcome{border:1.8px solid var(--gold);border-radius:14px;background:var(--panel);padding:1rem 1.1rem}
+  .outcome{border:1.8px solid var(--gold);border-radius:16px;background:var(--panel);padding:1rem 1.1rem;box-shadow:0 4px 16px oklch(0% 0 0 / 0.08)}
   .outcome h4{font-family:var(--mono);font-size:.8rem;letter-spacing:.18em;color:var(--gold);margin-bottom:.55rem}
   .outcome li{font-family:var(--mono);font-size:.7rem;color:var(--ink);list-style:none;padding:.3rem 0;border-bottom:1px dashed var(--line)}
   .outcome li:last-child{border-bottom:none}
@@ -68,8 +77,85 @@
   .tmarks{position:relative;height:70px;font-family:var(--mono)}
   .tm{position:absolute;top:14px;font-size:.72rem;color:var(--muted);letter-spacing:.1em;transform:translateX(-50%);text-align:center}
   .tm b{display:block;color:var(--ink);font-weight:600;letter-spacing:.14em;margin-bottom:.2rem}
-  .footnote{margin-top:2.4rem;max-width:62ch;font-size:1.05rem;line-height:1.65}
-  .footnote::before{content:"";display:block;width:44px;height:3px;background:var(--gold);margin-bottom:1rem}
+  .footnote{margin-top:2.4rem;max-width:62ch;font-size:1.05rem;line-height:1.65;border-left:3px solid var(--gold);padding-left:1.2rem}
+  .footnote em{font-style:normal;font-weight:600;color:var(--ink)}
+  /* governance ticket-lifecycle diagram */
+  .govwrap{margin-top:3.4rem;border-top:1px dashed var(--line);padding-top:1.8rem}
+  .govwrap .cap{font-family:var(--mono);font-size:.78rem;letter-spacing:.24em;color:var(--gold);margin-bottom:1.6rem}
+  .gflow{display:flex;align-items:flex-start;gap:1rem;overflow-x:auto;padding-bottom:.8rem}
+  .gstage{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .glabel{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;color:var(--gold);margin-bottom:.9rem;text-transform:uppercase;white-space:nowrap}
+  .garrow{flex:0 0 auto;align-self:flex-start;color:var(--muted);font-family:var(--mono);font-size:1.05rem;margin-top:2.5rem}
+  .rolecap{font-family:var(--mono);font-size:.6rem;color:var(--muted);letter-spacing:.05em;margin:.35rem 0 .8rem}
+  .gbox{width:100%;background:var(--panel);border:1.6px solid var(--gold-soft);border-radius:10px;padding:.65rem .75rem;margin-bottom:.6rem;box-shadow:0 1px 2px oklch(0% 0 0 / 0.06);text-align:left}
+  .gbox h4{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;font-weight:600;margin-bottom:.4rem;text-align:center}
+  .gbox .checklist{list-style:none;font-family:var(--mono);font-size:.6rem;color:var(--muted)}
+  .gbox .checklist li{display:flex;justify-content:space-between;gap:.4rem;padding:.16rem 0}
+  .gchain{display:flex;align-items:center;justify-content:center;gap:.25rem;margin:.25rem 0}
+  .gchain span{width:20px;height:15px;border:1.4px solid var(--gold);border-radius:3px;background:var(--bg)}
+  .gchain .gline{width:8px;height:1.4px;background:var(--gold-soft);border:none;border-radius:0}
+  .gprice{font-family:var(--mono);font-size:.72rem;text-align:center;color:var(--muted)}
+  .gprice b{color:var(--gold)}
+  .gnote{font-family:var(--mono);font-size:.58rem;color:var(--muted);text-align:center;margin-top:.15rem;letter-spacing:.03em}
+  .gwrapdash{border:1.4px dashed var(--gold-soft);border-radius:14px;padding:1.5rem .8rem .3rem;position:relative;margin-top:.3rem}
+  .gwrapdash .gwlabel{position:absolute;top:-.6rem;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 .5rem;font-family:var(--mono);font-size:.56rem;color:var(--muted);letter-spacing:.03em;white-space:nowrap}
+  .gcluster{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:.4rem 0 .2rem}
+  .gchip{width:40px;height:40px;border-radius:50%;border:1.4px solid var(--line);background:var(--panel);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.56rem;color:var(--ink)}
+  .gchip.dotted{border-style:dotted;color:var(--muted)}
+  .gchipcap{font-family:var(--mono);font-size:.52rem;color:var(--muted);text-align:center;width:44px;margin-top:.2rem}
+  .groundtable{border:1.4px dashed var(--gold);border-radius:12px;padding:.85rem .6rem;text-align:center;width:100%}
+  .groundtable h4{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--gold);margin-bottom:.55rem}
+  .gapprove{border:1.6px solid var(--gold);border-radius:10px;background:var(--panel);padding:.65rem .8rem;text-align:center;font-family:var(--mono);font-size:.62rem;box-shadow:0 1px 2px oklch(0% 0 0 / 0.06);margin-bottom:.6rem;width:100%}
+  .gapprove b{display:block;font-size:.72rem;margin-bottom:.15rem;color:var(--ink)}
+  .gvend{border:1.8px solid var(--gold);border-radius:14px;background:var(--panel);padding:.85rem .9rem;box-shadow:0 4px 16px oklch(0% 0 0 / 0.08);text-align:left;width:100%}
+  .gvend h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--gold);margin-bottom:.5rem;text-align:center}
+  .gvend li{font-family:var(--mono);font-size:.62rem;list-style:none;padding:.2rem 0;border-bottom:1px dashed var(--line)}
+  .gvend li:last-child{border-bottom:none}
+  /* Tooltips */
+  .tip{position:relative;cursor:help}
+  .tip.tu{border-bottom:1px dotted var(--muted)}
+  .tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%);
+    background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:.62rem;line-height:1.45;
+    padding:.5rem .65rem;border-radius:8px;white-space:normal;width:190px;text-align:left;
+    opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s;z-index:80;
+    box-shadow:0 8px 24px oklch(0% 0 0 / 0.18)}
+  .tip::before{content:"";position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:var(--ink);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s;z-index:80}
+  .tip:hover::after,.tip:hover::before{opacity:1;visibility:visible}
+  /* orange (secondary) diagram variant */
+  .govwrap.orange .cap{color:var(--secondary)}
+  .govwrap.orange .glabel{color:var(--secondary)}
+  .govwrap.orange .gbox{border-color:var(--secondary)}
+  .govwrap.orange .gbox h4{color:var(--secondary)}
+  .govwrap.orange .arrow-d{color:var(--secondary)}
+  .govwrap.orange .garrow{color:var(--secondary)}
+  .govwrap.orange .gchip{border-color:var(--secondary)}
+  .govwrap.orange .gnote{color:var(--muted)}
+  .govwrap.orange .gwrapdash{border-color:var(--secondary)}
+  .govwrap.orange .groundtable{border-color:var(--secondary)}
+  .govwrap.orange .gapprove{border-color:var(--secondary)}
+  .govwrap.orange .gapprove b{color:var(--secondary)}
+  .govwrap.orange .gvend{border-color:var(--secondary)}
+  .govwrap.orange .gvend h4{color:var(--secondary)}
+  .gnode{width:100%;background:var(--panel);border:1.6px solid var(--secondary);border-radius:10px;padding:.7rem .6rem;text-align:center;box-shadow:0 1px 2px oklch(0% 0 0 / 0.06)}
+  .gnode .gicon{font-size:1.15rem;color:var(--secondary);margin-bottom:.35rem;line-height:1}
+  .gnode b{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.05em}
+  .gnode span{display:block;font-family:var(--mono);font-size:.56rem;color:var(--muted);margin-top:.15rem}
+  .gnode.dash{border-style:dashed;background:transparent}
+  .gaccounts{border:1.6px solid var(--secondary);border-radius:12px;padding:.8rem .7rem .6rem;background:var(--panel);box-shadow:0 1px 2px oklch(0% 0 0 / 0.06)}
+  .gaccounts .gahead{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--secondary);margin-bottom:.15rem}
+  .gaccounts .gasub{font-family:var(--mono);font-size:.54rem;color:var(--muted);text-align:center;margin-bottom:.55rem}
+  .gaccounts .gaenvs{display:flex;gap:.5rem}
+  .gaccounts .gaenv{flex:1;border:1.4px solid var(--secondary);border-radius:8px;padding:.5rem .3rem;text-align:center;background:var(--bg)}
+  .gaccounts .gaenv .dots{font-family:var(--mono);color:var(--muted);font-size:.7rem;margin-bottom:.3rem}
+  .gaccounts .gaenv b{display:block;font-family:var(--mono);font-size:.6rem;color:var(--secondary)}
+  .glane{display:flex;align-items:center;gap:1rem;overflow-x:auto;padding-bottom:.6rem;margin-bottom:.4rem}
+  .glanetag{flex:0 0 auto;width:150px;text-align:left}
+  .glanetag .glabel{margin-bottom:.15rem}
+  .glanetag .gsub{font-family:var(--mono);font-size:.56rem;color:var(--muted);letter-spacing:.03em}
+  .gnodecol{flex:0 0 auto;width:118px}
+  .gxnote{font-family:var(--mono);font-size:.56rem;color:var(--muted);text-align:center;margin:.3rem 0 1.2rem;letter-spacing:.03em}
+  .gxnote b{color:var(--secondary)}
   @media(max-width:1100px){.phases,.steps{grid-template-columns:1fr 1fr}.head{grid-template-columns:1fr}}
   @media(max-width:760px){
     body{padding:4.2rem 6vw 3rem}
@@ -86,12 +172,26 @@
             border-left:2px solid var(--ink);padding-left:1rem;margin-top:.2rem}
     .tm{position:static;transform:none;text-align:left;top:auto!important;left:auto!important}
     .footnote{font-size:.98rem}
+    /* Governance-Diagramme: horizontaler Flow wird zum vertikalen Stack */
+    .gflow,.glane{flex-direction:column;align-items:stretch;overflow-x:visible;gap:.5rem}
+    .gnodecol,.glanetag{width:100%!important}
+    .glanetag{margin-bottom:.3rem}
+    .garrow{align-self:center;transform:rotate(90deg);margin:.1rem 0}
+    .gaccounts .gaenvs{gap:.4rem}
+    .tip::after{width:150px;font-size:.6rem;padding:.4rem .55rem}
+    .govwrap .cap{font-size:.68rem;letter-spacing:.14em;line-height:1.6}
   }
 </style>
 </head>
 <body>
 
-<div class="topnav"><span>01 IDENTIFIZIEREN</span><b>02 BEWERTEN</b><span>03 UMSETZEN</span><span>04 VERANKERN</span></div>
+<div class="topnav">
+  <a href="#identify" data-key="identify">01 IDENTIFIZIEREN</a>
+  <a href="#evaluate" data-key="evaluate">02 BEWERTEN</a>
+  <a href="#rfp" data-key="rfp">03 RFP</a>
+  <a href="#implement" data-key="implement">04 UMSETZEN</a>
+  <a href="#anchor" data-key="anchor">05 VERANKERN</a>
+</div>
 
 <div class="head">
   <h1>KI-Mindset<br>in <em>12 Monaten</em></h1>
@@ -103,7 +203,7 @@
 <div class="phases">
 
   <!-- 01 -->
-  <div class="phase">
+  <div class="phase" id="identify">
     <div class="plabel">01 · IDENTIFIZIEREN</div>
     <div class="pmonths">Monat 1–2</div>
     <div class="circwrap"><div class="circle">AIT</div><span>Principal AI &amp;<br>Transformation Expert</span></div>
@@ -124,7 +224,7 @@
   </div>
 
   <!-- 02 -->
-  <div class="phase">
+  <div class="phase" id="evaluate">
     <div class="plabel">02 · BEWERTEN &amp; PILOTIEREN</div>
     <div class="pmonths">Monat 3–5</div>
     <div class="box">
@@ -139,13 +239,38 @@
     <div class="arrow-d">↓</div>
     <div class="box">
       <h4>LEITPLANKEN</h4>
-      <p>KI-Richtlinie · freigegebene Tools<br>Basisschulung · <b>Bremsen, keine Sperren</b></p>
+      <p>KI-Richtlinie · freigegebene Tools<br>Basisschulung · <b style="color:var(--secondary)">Bremsen, keine Sperren</b></p>
     </div>
   </div>
 
-  <!-- 03 -->
-  <div class="phase">
-    <div class="plabel">03 · UMSETZEN</div>
+  <!-- 03 RFP -->
+  <div class="phase" id="rfp">
+    <div class="plabel">03 · RFP</div>
+    <div class="pmonths">Checkpoint · Monat 5–6</div>
+    <div class="box">
+      <h4>USE-CASE-EINREICHUNG</h4>
+      <p>Ein-Seiten-Pitch, Champion sponsert ihn<br>Problem · Daten · Owner · <b>erwarteter Nutzen</b></p>
+    </div>
+    <div class="arrow-d">↓</div>
+    <div class="box">
+      <h4>ANBIETER-SCORECARD</h4>
+      <p>Datenresidenz &amp; Sicherheit · Integrationsaufwand<br>Gesamtkosten inkl. Nutzung · <b>Exit &amp; Portabilität</b></p>
+    </div>
+    <div class="arrow-d">↓</div>
+    <div class="box dash">
+      <h4>WARNSIGNALE</h4>
+      <p>intransparente Preise · kein Audit-Trail<br>unklar, wem die Trainingsdaten gehören</p>
+    </div>
+    <div class="arrow-d">↓</div>
+    <div class="box">
+      <h4>GO / NO-GO</h4>
+      <p>Pilotergebnis + Scorecard entscheiden gemeinsam<br><b>finanziert und ausgestattet</b>, oder mit Begründung zurückgestellt</p>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="phase" id="implement">
+    <div class="plabel">04 · UMSETZEN</div>
     <div class="pmonths">Monat 6–9</div>
     <div class="chips-cap">EINGEBUNDEN · ALLE ABTEILUNGEN</div>
     <div class="chips">
@@ -168,9 +293,9 @@
     </div>
   </div>
 
-  <!-- 04 -->
-  <div class="phase">
-    <div class="plabel">04 · VERANKERN</div>
+  <!-- 05 -->
+  <div class="phase" id="anchor">
+    <div class="plabel">05 · VERANKERN</div>
     <div class="pmonths">Monat 10–12</div>
     <div class="box">
       <h4>ZIELE</h4>
@@ -208,21 +333,242 @@
   <div class="lab">TICKET</div>
   <div class="tline">
     <div class="tdot fill" style="left:2%"></div>
-    <div class="tdot fill" style="left:22%"></div>
-    <div class="tdot" style="left:47%"></div>
-    <div class="tdot" style="left:74%"></div>
+    <div class="tdot fill" style="left:20%"></div>
+    <div class="tdot" style="left:38%"></div>
+    <div class="tdot" style="left:58%"></div>
+    <div class="tdot" style="left:80%"></div>
     <div class="tdot" style="left:97%"></div>
   </div>
   <div class="tmarks">
     <div class="tm" style="left:2%"><b>identifizieren</b>M1 · eröffnet</div>
-    <div class="tm" style="left:22%"><b>bewerten</b>M3 · in Arbeit</div>
-    <div class="tm" style="left:47%"><b>umsetzen</b>M6 · in Prüfung</div>
-    <div class="tm" style="left:74%"><b>verankern</b>M10 · freigegeben</div>
+    <div class="tm" style="left:20%"><b>bewerten</b>M3 · in Arbeit</div>
+    <div class="tm" style="left:38%"><b>rfp</b>M5 · in Prüfung</div>
+    <div class="tm" style="left:58%"><b>umsetzen</b>M6 · freigegeben</div>
+    <div class="tm" style="left:80%"><b>verankern</b>M10 · skaliert</div>
     <div class="tm" style="left:97%"><b>etabliert</b>M12 · gelöst</div>
   </div>
 </div>
 
 <p class="footnote">Wozu überhaupt Leitplanken? <em>Man baut Bremsen nicht ins Auto, um langsamer zu fahren. Man baut sie ein, damit es schnell fahren kann.</em> Klare Regeln zu Daten, Tools und Risiko sind das, was Tempo mit KI erst möglich macht, statt dass Firmendaten still in irgendein kostenloses Tool wandern.</p>
+
+<!-- Ticket-Lifecycle-Diagramm -->
+<div class="govwrap">
+  <div class="cap">BEISPIEL-TICKET · APPLICATION ONBOARDING</div>
+  <div class="gflow">
+
+    <!-- 01 INITIALISIEREN -->
+    <div class="gstage" style="width:150px">
+      <div class="glabel">01 · INITIALISIEREN</div>
+      <div class="circle tip" data-tip="Projekt- oder Produktmanager. Verantwortet den ersten Request.">PM</div>
+      <div class="rolecap">initialisiert</div>
+      <div class="arrow-d">↓</div>
+      <div class="gbox">
+        <h4>REQUEST</h4>
+        <div style="display:flex;flex-direction:column;gap:.25rem;margin:.2rem 0">
+          <span style="display:block;height:6px;background:var(--line);border-radius:3px"></span>
+          <span style="display:block;height:6px;background:var(--line);border-radius:3px;width:80%"></span>
+          <span style="display:block;height:6px;background:var(--line);border-radius:3px;width:60%"></span>
+        </div>
+      </div>
+      <div class="gnote">Absicht · noch keine Technik</div>
+    </div>
+
+    <div class="garrow">→</div>
+
+    <!-- 02 DESIGN -->
+    <div class="gstage" style="width:190px">
+      <div class="glabel">02 · DESIGN</div>
+      <div class="circle tip" data-tip="Solution Architect. Macht aus dem Request ein konkretes Design.">SA</div>
+      <div class="rolecap">gestaltet</div>
+      <div class="gwrapdash">
+        <span class="gwlabel">&lt; 5K · automatisiert · nur Policy-Check, keine Freigabe</span>
+        <div class="gbox">
+          <h4>SERVICE CATALOGUE</h4>
+          <ul class="checklist">
+            <li><span>network / vpc</span><span class="check">✓</span></li>
+            <li><span>compute / ecs</span><span class="check">✓</span></li>
+            <li><span>database / rds</span><span class="check">✓</span></li>
+            <li><span>storage / s3</span><span class="check">✓</span></li>
+          </ul>
+        </div>
+        <div class="arrow-d">↓</div>
+        <div class="gbox">
+          <h4>BLUEPRINT</h4>
+          <div class="gchain"><span></span><span class="gline"></span><span></span><span class="gline"></span><span></span></div>
+        </div>
+        <div class="arrow-d">↓</div>
+        <div class="gbox">
+          <h4>SHIFT LEFT</h4>
+          <div class="gprice">$163 → <b>$82</b></div>
+          <div class="gnote">Alternativen vorab bepreist</div>
+        </div>
+        <div class="arrow-d">↓</div>
+        <div class="diamond" style="width:92px;height:92px;margin:.1rem auto .3rem">
+          <div class="shape"></div>
+          <div class="txt" style="font-size:.56rem">BUDGET<br><b>≥ 5K?</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="garrow">→</div>
+
+    <!-- 03 REVIEW -->
+    <div class="gstage" style="width:190px">
+      <div class="glabel">03 · REVIEW</div>
+      <div class="circle tip" data-tip="Enterprise Architect. Erstellt den Business Case für den Round Table.">EA</div>
+      <div class="rolecap">bereitet Fall vor</div>
+      <div class="gcluster">
+        <div><div class="gchip tip" data-tip="Domain Architect, Security-Blick. Prüft das Design gegen die Policy.">DA</div><div class="gchipcap">Security</div></div>
+        <div><div class="gchip tip" data-tip="Domain Architect, Network-Blick. Prüft Konnektivität und Exposition.">DA</div><div class="gchipcap">Network</div></div>
+        <div><div class="gchip tip" data-tip="Domain Architect, Data-Blick. Prüft Datenflüsse und Residenz.">DA</div><div class="gchipcap">Data</div></div>
+        <div><div class="gchip tip" data-tip="Finance. Prüft die Zahl gegen das Budget.">FN</div><div class="gchipcap">Kosten</div></div>
+        <div><div class="gchip tip" data-tip="Business Architect. Bestätigt, dass der Use Case noch Sinn ergibt.">BA</div><div class="gchipcap">Nutzen</div></div>
+        <div><div class="gchip dotted tip" data-tip="Offener Kanal. Jeder kann vor dem Round Table Bedenken einbringen.">···</div><div class="gchipcap">Community</div></div>
+      </div>
+      <div class="arrow-d">↓</div>
+      <div class="groundtable">
+        <h4>ROUND TABLE</h4>
+        <div class="circle" style="width:38px;height:38px;font-size:.58rem;margin:0 auto .4rem">EA</div>
+        <div style="display:flex;justify-content:center;gap:.4rem;margin-bottom:.55rem">
+          <div class="gchip" style="width:34px;height:34px">DA</div>
+          <div class="gchip" style="width:34px;height:34px">SA</div>
+          <div class="gchip" style="width:34px;height:34px">FN</div>
+        </div>
+        <div class="gnote">Beschluss dokumentiert</div>
+      </div>
+    </div>
+
+    <div class="garrow">→</div>
+
+    <!-- 04 FREIGEBEN -->
+    <div class="gstage" style="width:150px">
+      <div class="glabel">04 · FREIGEBEN</div>
+      <div class="gapprove tip" data-tip="Centre of Excellence. Die funktionsübergreifende Gruppe mit finaler Freigabe."><b>CoE</b>freigegeben</div>
+      <div class="arrow-d">↓</div>
+      <div class="gapprove"><b>Budget</b>≥ 5K bestätigt</div>
+    </div>
+
+    <div class="garrow">→</div>
+
+    <!-- 05 BEREITSTELLEN -->
+    <div class="gstage" style="width:150px">
+      <div class="glabel">05 · BEREITSTELLEN</div>
+      <div class="gvend">
+        <h4>VENDING</h4>
+        <ul>
+          <li>dev</li>
+          <li>staging</li>
+          <li>prod</li>
+        </ul>
+      </div>
+      <div class="gnote">einmal pro Umgebung · IAM-Keys</div>
+    </div>
+
+  </div>
+
+  <div class="ticket" style="margin-top:2.2rem">
+    <div class="lab">TICKET</div>
+    <div class="tline">
+      <div class="tdot fill" style="left:2%"></div>
+      <div class="tdot fill" style="left:26%"></div>
+      <div class="tdot" style="left:52%"></div>
+      <div class="tdot" style="left:78%"></div>
+      <div class="tdot" style="left:97%"></div>
+    </div>
+    <div class="tmarks">
+      <div class="tm" style="left:2%"><b>eröffnet</b>eröffnet</div>
+      <div class="tm" style="left:26%"><b>in Arbeit</b>Schätzung</div>
+      <div class="tm" style="left:52%"><b>in Prüfung</b>Fall vorbereitet</div>
+      <div class="tm" style="left:78%"><b>freigegeben</b>Beschluss</div>
+      <div class="tm" style="left:97%"><b>gelöst</b>bereitgestellt</div>
+    </div>
+  </div>
+</div>
+
+<!-- Diagramm: Freigaben danach -->
+<div class="govwrap orange">
+  <div class="cap">BEISPIEL-TICKET · FREIGABEN DANACH</div>
+
+  <div class="glane">
+    <div class="glanetag">
+      <div class="glabel">01 · SELF SERVICE</div>
+      <div class="gsub">Plattform · zentralisiert</div>
+    </div>
+    <div class="gnodecol">
+      <div class="gnode tip" data-tip="Das freigegebene Ticket aus der Review-Stufe.">
+        <div class="gicon">✓</div><b>TICKET</b><span>freigegeben</span>
+      </div>
+    </div>
+    <div class="garrow">→</div>
+    <div class="gnodecol">
+      <div class="gnode dash tip" data-tip="Bewusst generisch gehalten. Jede Firma hat hier eine andere Freigabekette.">
+        <div class="gicon">···</div><b>FREIGABE</b><span>Prozess</span>
+      </div>
+    </div>
+    <div class="garrow">→</div>
+    <div class="gnodecol" style="width:230px">
+      <div class="gaccounts tip" data-tip="Ein Cloud-Account pro Umgebung, automatisch erstellt, sobald das Ticket durch ist.">
+        <div class="gahead"><span>ACCOUNTS</span><span style="font-size:.6rem;color:var(--muted)">aws · azure · gcp</span></div>
+        <div class="gasub">Account · Subscription · Project</div>
+        <div class="gaenvs">
+          <div class="gaenv"><div class="dots">···</div><b>DEV</b></div>
+          <div class="gaenv"><div class="dots">···</div><b>STAGING</b></div>
+          <div class="gaenv"><div class="dots">···</div><b>PROD</b></div>
+        </div>
+        <div class="gasub" style="margin:.5rem 0 0">einer pro Umgebung</div>
+      </div>
+    </div>
+    <div class="garrow">→</div>
+    <div class="gnodecol" style="display:flex;flex-direction:column;gap:.6rem">
+      <div class="gnode tip" data-tip="Steht auf dem Account, damit es immer jemanden gibt, der für Kosten und Zugriff verantwortlich ist.">
+        <div class="gicon">✉</div><b>SERVICE OWNER</b><span>Account-Name</span>
+      </div>
+      <div class="gnode tip" data-tip="Erhält Standard-IAM-Keys, genau im Umfang der Anfrage, nicht mehr.">
+        <div class="gicon">🔑</div><b>REQUESTER</b><span>Standard-IAM-Keys</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gxnote">↓ <b>später · wer kommt rein?</b> Zugriff wird separat vergeben, auf die oben erstellten Accounts ↓</div>
+
+  <div class="glane">
+    <div class="glanetag">
+      <div class="glabel">02 · ZUGRIFF GEBEN</div>
+      <div class="gsub">App-Team · Plattform</div>
+    </div>
+    <div class="gnodecol">
+      <div class="gnode tip" data-tip="Die Personen, die tatsächlich täglich in diesen Accounts arbeiten.">
+        <div class="gicon">👥</div><b>TEAM MEMBERS</b><span>SRE</span>
+      </div>
+    </div>
+    <div class="garrow">→</div>
+    <div class="gnodecol">
+      <div class="gnode tip" data-tip="Ein leichtgewichtiger Zugriffsantrag, kein neues Ticket.">
+        <div class="gicon">📄</div><b>REQUEST</b><span>an Plattform</span>
+      </div>
+    </div>
+    <div class="garrow">→</div>
+    <div class="gnodecol">
+      <div class="gnode tip" data-tip="Genehmigt, wer reinkommt. Meist die Führungskraft des Anfragenden.">
+        <div class="gicon">👤✓</div><b>SUPERVISOR</b><span>genehmigt</span>
+      </div>
+    </div>
+    <div class="garrow">→</div>
+    <div class="gnodecol">
+      <div class="gnode tip" data-tip="Vergibt die IAM-Rolle nach Genehmigung. Keine manuelle Bereitstellung.">
+        <div class="gicon">🔑</div><b>PLATFORM</b><span>vergibt IAM</span>
+      </div>
+    </div>
+    <div class="garrow">→</div>
+    <div class="gnodecol">
+      <div class="gnode tip" data-tip="Protokolliert und regelmäßig überprüft, nicht einmal vergeben und vergessen.">
+        <div class="gicon">☑</div><b>ACCESS RIGHTS</b><span>vergeben</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="footnote" style="border-color:var(--secondary);margin-top:1.8rem">Was, wenn die Ausgaben das geplante Budget übersteigen? <em>Weitere FinOps-Prozesse</em> müssen noch definiert werden, um Planung, Budgetierung und Forecasting nach dem Onboarding der Anwendung zu überprüfen.</p>
+</div>
 
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Farbschema wechseln"></button>
 <script>
@@ -239,6 +585,25 @@
     try{localStorage.setItem(k,n)}catch(e){}
     paint();
   });
+})();
+</script>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.topnav a'));
+  var sections=links.map(function(a){return document.getElementById(a.dataset.key)}).filter(Boolean);
+  function setActive(key){
+    links.forEach(function(a){a.classList.toggle('active',a.dataset.key===key)});
+  }
+  if(!('IntersectionObserver' in window)){setActive('identify');return;}
+  var io=new IntersectionObserver(function(entries){
+    var best=null;
+    entries.forEach(function(e){
+      if(e.isIntersecting && (!best || e.intersectionRatio>best.intersectionRatio)) best=e;
+    });
+    if(best) setActive(best.target.id);
+  },{threshold:[.25,.5,.75],rootMargin:'-10% 0px -55% 0px'});
+  sections.forEach(function(s){io.observe(s)});
+  setActive('identify');
 })();
 </script>
 </body>
