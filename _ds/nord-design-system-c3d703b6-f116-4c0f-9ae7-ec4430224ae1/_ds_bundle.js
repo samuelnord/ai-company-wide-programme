@@ -166,14 +166,6 @@ function SlideFrame({
   }), React.createElement('span', {
     style: {
       ...bracket,
-      top: '24px',
-      right: '24px',
-      borderTopWidth: 'var(--frame-stroke)',
-      borderRightWidth: 'var(--frame-stroke)'
-    }
-  }), React.createElement('span', {
-    style: {
-      ...bracket,
       bottom: '24px',
       left: '24px',
       borderBottomWidth: 'var(--frame-stroke)',
