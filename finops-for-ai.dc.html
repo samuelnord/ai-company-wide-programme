@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/nord-design-system-c3d703b6-f116-4c0f-9ae7-ec4430224ae1/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/nord-design-system-c3d703b6-f116-4c0f-9ae7-ec4430224ae1/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/nord-design-system-c3d703b6-f116-4c0f-9ae7-ec4430224ae1/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/nord-design-system-c3d703b6-f116-4c0f-9ae7-ec4430224ae1/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/nord-design-system-c3d703b6-f116-4c0f-9ae7-ec4430224ae1/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/nord-design-system-c3d703b6-f116-4c0f-9ae7-ec4430224ae1/styles.css">
+  <script src="_ds/nord-design-system-c3d703b6-f116-4c0f-9ae7-ec4430224ae1/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: var(--color-muted); }
+    a { color: var(--color-primary); }
+    a:hover { color: var(--color-secondary); }
+    .fa-nav-btn { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 18px; border-radius: 6px; border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-fg); cursor: pointer; }
+    .fa-nav-btn:hover { border-color: var(--color-secondary); color: var(--color-secondary); }
+    .fa-menu-item { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; text-align: left; padding: 10px 12px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--color-fg); cursor: pointer; display: flex; gap: 12px; align-items: baseline; width: 100%; }
+    .fa-menu-item:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .fa-step-btn { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 14px; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-muted-fg); cursor: pointer; }
+    .fa-step-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  </style>
+</helmet>
+<div data-theme="{{ theme }}" style="width: 100%; height: 100vh; display: flex; box-sizing: border-box; overflow: hidden; background: var(--color-muted); position: relative;">
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; min-width: 0;">
+  <div style="position: relative; width: {{ scaledW }}px; height: {{ scaledH }}px; flex: 0 0 auto;">
+    <button onClick="{{ toggleMenu }}" style="position: absolute; top: 16px; right: 16px; z-index: 60; width: 40px; height: 40px; border-radius: var(--radius-md); border: 1.5px solid var(--color-secondary); background: var(--color-card); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 3px; flex-direction: column;">
+      <span style="width: 16px; height: 2px; background: var(--color-secondary);"></span>
+      <span style="width: 16px; height: 2px; background: var(--color-secondary);"></span>
+      <span style="width: 16px; height: 2px; background: var(--color-secondary);"></span>
+    </button>
+    <div style="position: absolute; top: 64px; right: 16px; width: 300px; max-height: 60%; overflow-y: auto; background: var(--color-bg); border: 1px solid var(--color-secondary); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); z-index: 60; display: {{ menuDisplay }}; flex-direction: column; padding: 10px;">
+      <sc-for list="{{ menuItems }}" as="item" hint-placeholder-count="26">
+        <button class="fa-menu-item" onClick="{{ item.go }}" style="background: {{ item.bg }}; color: {{ item.fg }}; padding-left: {{ item.indent }};">
+          <span style="flex: 0 0 24px; opacity: 0.55; font-size: 11px;">{{ item.num }}</span>
+          <span style="flex: 1; font-size: 12.5px;">{{ item.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+  <div style="position: absolute; top: 0; left: 0; width: 1280px; height: 720px; transform: scale({{ scale }}); transform-origin: top left; box-shadow: var(--shadow-lg);">
+    <sc-for list="{{ slides }}" as="slide" hint-placeholder-count="20">
+      <div style="position: absolute; inset: 0; display: {{ slide.display }};">
+
+        <sc-if value="{{ slide.isFlow }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="NordDesignSystem_c3d703.SlideFrame" page-number="{{ slide.pageNumber }}" total-pages="{{ slide.totalPages }}" theme="{{ slide.theme }}" hint-size="1280px,720px"></x-import>
+          <div style="position: absolute; top: 96px; left: 96px; right: 96px; bottom: 96px; display: flex; flex-direction: column; gap: 30px;">
+            <div style="font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: var(--color-fg);">FinOps sits between business and technology strategy</div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 14px;">
+              <div style="flex: 1; text-align: center; font-family: var(--font-mono); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; padding: 16px; border-radius: var(--radius-pill); background: var(--color-card); border: 1px solid var(--color-border); color: var(--color-fg);">Business Strategy</div>
+              <div style="font-family: var(--font-mono); font-size: 18px; color: var(--color-muted-fg);">↔</div>
+              <div style="flex: 0 0 180px; text-align: center; font-family: var(--font-mono); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; padding: 16px; border-radius: var(--radius-pill); background: var(--color-secondary); color: var(--color-secondary-fg); box-shadow: 0 0 0 4px color-mix(in oklch, var(--color-secondary) 20%, transparent);">FinOps</div>
+              <div style="font-family: var(--font-mono); font-size: 18px; color: var(--color-muted-fg);">↔</div>
+              <div style="flex: 1; text-align: center; font-family: var(--font-mono); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; padding: 16px; border-radius: var(--radius-pill); background: var(--color-card); border: 1px solid var(--color-border); color: var(--color-fg);">Technology Strategy</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 12px; background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 28px 32px; justify-content: center;">
+              <sc-for list="{{ slide.stackRows }}" as="row" hint-placeholder-count="4">
+                <div style="display: flex; gap: 12px; align-items: stretch;">
+                  <div style="flex: 0 0 190px; font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-muted-fg); display: flex; align-items: center;">{{ row.label }}</div>
+                  <sc-for list="{{ row.items }}" as="item" hint-placeholder-count="3">
+                    <div style="flex: 1; font-family: var(--font-display); font-size: 14px; font-weight: 500; text-align: center; padding: 14px 10px; border-radius: var(--radius-md); background: {{ item.bg }}; border: 1px solid var(--color-border); color: {{ item.fg }};">{{ item.label }}</div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ slide.isScope }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="NordDesignSystem_c3d703.SlideFrame" page-number="{{ slide.pageNumber }}" total-pages="{{ slide.totalPages }}" theme="{{ slide.theme }}" hint-size="1280px,720px"></x-import>
+          <div style="position: absolute; top: 96px; left: 96px; right: 96px; bottom: 96px; display: flex; flex-direction: column; gap: 22px;">
+            <div style="font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: var(--color-fg);">Cost decomposes layer by layer</div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ slide.layers }}" as="layer" hint-placeholder-count="5">
+                <div style="display: flex; align-items: center; gap: 18px; background: var(--color-card); border: 1px solid var(--color-border); border-left: 4px solid {{ layer.accent }}; border-radius: var(--radius-md); padding: 16px 22px; flex: 1;">
+                  <div style="flex: 0 0 40px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--color-muted-fg);">{{ layer.num }}</div>
+                  <div style="flex: 0 0 260px; font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -0.02em; color: var(--color-fg);">{{ layer.name }}</div>
+                  <div style="flex: 1; font-family: var(--font-display); font-size: 15px; color: var(--color-muted-fg);">{{ layer.desc }}</div>
+                  <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 7px 14px; border-radius: var(--radius-pill); background: {{ layer.tagBg }}; color: {{ layer.tagFg }};">{{ layer.tag }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ slide.isBuilder }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="NordDesignSystem_c3d703.SlideFrame" page-number="{{ slide.pageNumber }}" total-pages="{{ slide.totalPages }}" theme="{{ slide.theme }}" hint-size="1280px,720px"></x-import>
+          <div style="position: absolute; top: 72px; left: 72px; right: 72px; bottom: 64px; display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: baseline; gap: 16px;">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; padding: 7px 14px; border-radius: var(--radius-pill); background: var(--color-primary); color: var(--color-primary-fg);">{{ builder.stepLabel }}</div>
+              <div style="font-family: var(--font-display); font-weight: 600; font-size: 30px; letter-spacing: -0.03em; color: var(--color-fg);">{{ builder.stepTitle }}</div>
+            </div>
+            <div style="flex: 1; display: flex; gap: 16px; min-height: 0;">
+              <div style="flex: 0 0 300px; display: flex; flex-direction: column; gap: 7px; justify-content: flex-start;">
+                <sc-for list="{{ builder.fields }}" as="field" hint-placeholder-count="5">
+                  <div style="flex: 0 0 auto; background: var(--color-card); border: 1px solid {{ field.border }}; border-radius: var(--radius-md); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: {{ field.labelColor }};">{{ field.label }}</div>
+                    <sc-for list="{{ field.lines }}" as="line" hint-placeholder-count="2">
+                      <div style="font-family: var(--font-display); font-size: 11.5px; line-height: 1.3; color: {{ line.color }};">{{ line.text }}</div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+                <div style="background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: {{ builder.personaHeadColor }};">Core &amp; allied personas</div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <sc-for list="{{ builder.personas }}" as="p" hint-placeholder-count="11">
+                      <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; padding: 7px 12px; border-radius: var(--radius-pill); background: {{ p.bg }}; color: {{ p.fg }}; border: 1px solid {{ p.border }};">{{ p.name }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="flex: 1; min-height: 0; display: flex; gap: 8px;">
+                  <sc-for list="{{ builder.domains }}" as="d" hint-placeholder-count="3">
+                    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+                      <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; padding: 7px 6px; border-radius: var(--radius-sm); background: var(--color-fg); color: var(--color-bg);">{{ d.title }}</div>
+                      <sc-for list="{{ d.items }}" as="c" hint-placeholder-count="4">
+                        <div style="font-family: var(--font-display); font-size: 12px; font-weight: 500; padding: 8px 10px; border-radius: var(--radius-sm); background: {{ c.bg }}; color: {{ c.fg }}; border: 1px solid {{ c.border }};">{{ c.name }}</div>
+                      </sc-for>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-muted-fg);">Manage the FinOps practice</div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <sc-for list="{{ builder.manage }}" as="m" hint-placeholder-count="8">
+                      <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; padding: 7px 12px; border-radius: var(--radius-pill); background: {{ m.bg }}; color: {{ m.fg }}; border: 1px solid {{ m.border }};">{{ m.name }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <div style="flex: 1; font-family: var(--font-display); font-size: 14px; line-height: 1.45; color: var(--color-muted-fg); text-wrap: pretty;">{{ builder.body }}</div>
+              <div style="display: flex; gap: 6px; flex: 0 0 auto;">
+                <sc-for list="{{ builder.steps }}" as="st" hint-placeholder-count="9">
+                  <button onClick="{{ st.go }}" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; width: 30px; height: 30px; border-radius: var(--radius-pill); cursor: pointer; background: {{ st.bg }}; color: {{ st.fg }}; border: 1px solid {{ st.border }};">{{ st.label }}</button>
+                </sc-for>
+              </div>
+              <button class="fa-nav-btn" onClick="{{ builder.advance }}">{{ builder.advanceLabel }}</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ slide.isStatGrid }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="NordDesignSystem_c3d703.SlideFrame" page-number="{{ slide.pageNumber }}" total-pages="{{ slide.totalPages }}" theme="{{ slide.theme }}" hint-size="1280px,720px"></x-import>
+          <div style="position: absolute; top: 96px; left: 96px; right: 96px; bottom: 96px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: var(--color-fg); margin-bottom: 36px;">{{ slide.props.title }}</div>
+            <div style="display: flex; gap: 24px;">
+              <sc-for list="{{ slide.props.stats }}" as="stat" hint-placeholder-count="4">
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+                  <div style="font-family: var(--font-mono); font-weight: 700; font-size: 56px; color: {{ stat.color }};">{{ stat.value }}</div>
+                  <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; color: var(--color-muted-fg); line-height: 1.4;">{{ stat.label }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="flex: 1;"></div>
+            <div style="border-top: 1px solid var(--color-border); padding-top: 24px; display: flex; gap: 40px;">
+              <div style="flex: 1;">
+                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-primary); margin-bottom: 8px;">The ROI Case</div>
+                <div style="font-family: var(--font-display); font-size: 15px; line-height: 1.5; color: var(--color-fg); text-wrap: pretty;">{{ slide.props.roiText }}</div>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-secondary); margin-bottom: 8px;">How to Apply It</div>
+                <div style="font-family: var(--font-display); font-size: 15px; line-height: 1.5; color: var(--color-fg); text-wrap: pretty;">{{ slide.props.applyText }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ slide.isTable }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="NordDesignSystem_c3d703.SlideFrame" page-number="{{ slide.pageNumber }}" total-pages="{{ slide.totalPages }}" theme="{{ slide.theme }}" hint-size="1280px,720px"></x-import>
+          <div style="position: absolute; top: 96px; left: 96px; right: 96px; bottom: 96px; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-display); font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: var(--color-fg); margin-bottom: 28px;">{{ slide.props.title }}</div>
+            <x-import component-from-global-scope="NordDesignSystem_c3d703.DataTable" columns="{{ slide.props.columns }}" rows="{{ slide.props.rows }}" hint-size="100%,auto"></x-import>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ slide.isGovernance }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="NordDesignSystem_c3d703.SlideFrame" page-number="{{ slide.pageNumber }}" total-pages="{{ slide.totalPages }}" theme="{{ slide.theme }}" hint-size="1280px,720px"></x-import>
+          <div style="position: absolute; top: 88px; left: 88px; right: 88px; bottom: 88px; display: flex; flex-direction: column; gap: 16px;">
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 600; font-size: 28px; letter-spacing: -0.03em; color: var(--color-fg);">A Simple, Repeatable Way to Approve AI Access</div>
+              <div style="font-family: var(--font-display); font-size: 13.5px; color: var(--color-muted-fg); margin-top: 4px;">One cycle, run once a month, in four plain steps. Click each step to see what happens, who's in the room, and what comes out of it.</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <sc-for list="{{ gov.phases }}" as="ph" hint-placeholder-count="4">
+                <button onClick="{{ ph.go }}" style="flex: 1; text-align: left; cursor: pointer; padding: 12px 14px; border-radius: var(--radius-md); background: {{ ph.bg }}; border: 1px solid {{ ph.border }}; display: flex; align-items: center; gap: 10px;">
+                  <div style="width: 26px; height: 26px; border-radius: 50%; background: {{ ph.dotBg }}; color: {{ ph.dotFg }}; font-family: var(--font-mono); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">{{ ph.stepNum }}</div>
+                  <div style="font-family: var(--font-display); font-size: 13.5px; font-weight: 600; color: {{ ph.fg }};">{{ ph.title }}</div>
+                </button>
+                <sc-if value="{{ ph.showArrow }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-family: var(--font-mono); font-size: 16px; color: var(--color-muted-fg); flex: 0 0 auto;">&#8594;</div>
+                </sc-if>
+              </sc-for>
+            </div>
+            <div style="flex: 1; display: flex; gap: 18px; min-height: 0;">
+              <div style="flex: 1.15; display: flex; flex-direction: column; gap: 10px; background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 20px 22px; overflow: hidden;">
+                <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-secondary);">Who's involved: {{ gov.active.owner }}</div>
+                <div style="font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.02em; color: var(--color-fg); line-height: 1.25;">{{ gov.active.headline }}</div>
+                <div style="font-family: var(--font-display); font-size: 12px; line-height: 1.4; color: var(--color-muted-fg); text-wrap: pretty;">{{ gov.active.body }}</div>
+                <div style="font-family: var(--font-display); font-size: 13px; line-height: 1.5; color: var(--color-fg); background: var(--color-muted); border-left: 3px solid var(--color-secondary); border-radius: var(--radius-sm); padding: 10px 12px; text-wrap: pretty;">{{ gov.active.how }}</div>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 6px; min-height: 0;">
+                <div style="font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted-fg); margin-bottom: 2px;">What actually happens</div>
+                <sc-for list="{{ gov.active.rows }}" as="row" hint-placeholder-count="3">
+                  <div style="display: flex; align-items: center; gap: 10px; background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 9px 12px; flex: 1;">
+                    <div style="width: 7px; height: 7px; border-radius: 2px; background: {{ row.dot }}; flex: 0 0 auto;"></div>
+                    <div style="font-family: var(--font-display); font-size: 11.5px; line-height: 1.3; color: var(--color-fg); flex: 1;">{{ row.text }}</div>
+                  </div>
+                </sc-for>
+                <div style="background: color-mix(in oklch, var(--color-secondary) 10%, var(--color-bg)); border: 1px solid var(--color-secondary); border-radius: var(--radius-md); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1.4;">
+                  <div style="font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-secondary);">In practice</div>
+                  <div style="font-family: var(--font-display); font-size: 11.5px; line-height: 1.35; color: var(--color-fg);">{{ gov.active.example }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ slide.isDs }}" hint-placeholder-val="{{ true }}">
+          <x-import component-from-global-scope="{{ slide.type }}" dc-props="{{ slide.props }}" hint-size="1280px,720px"></x-import>
+        </sc-if>
+      </div>
+    </sc-for>
+    <div style="position: absolute; top: 0; left: 0; width: 220px; height: 76px; background: var(--color-bg);"></div>
+    <div style="position: absolute; top: 30px; left: 48px; display: flex; align-items: center; gap: 8px;">
+      <div style="width: 8px; height: 8px; border-radius: 2px; background: var(--color-secondary); flex: 0 0 auto;"></div>
+      <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; letter-spacing: 0.22em; color: var(--color-fg);">NORD</div>
+    </div>
+  </div>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <button class="fa-nav-btn" onClick="{{ prev }}">Prev</button>
+    <div style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--color-muted-fg); min-width: 70px; text-align: center;">{{ counterLabel }}</div>
+    <button class="fa-nav-btn" onClick="{{ next }}">Next</button>
+    <button class="fa-nav-btn" onClick="{{ toggleTheme }}">{{ themeLabel }}</button>
+  </div>
+
+  </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:760}}">
+class Component extends DCLogic {
+  state = { index: 0, scale: 1, theme: 'light', menuOpen: false, step: 0, govStep: 0 };
+
+  buildGov() {
+    const g = this.state.govStep;
+    return {
+      phases: this.govPhases.map((p, i) => ({
+        title: p.title,
+        stepNum: i + 1,
+        showArrow: i < this.govPhases.length - 1,
+        go: () => this.setState({ govStep: i }),
+        bg: i === g ? 'var(--color-primary)' : 'var(--color-card)',
+        border: i === g ? 'var(--color-primary)' : 'var(--color-border)',
+        fg: i === g ? 'var(--color-primary-fg)' : 'var(--color-fg)',
+        dotBg: i === g ? 'var(--color-primary-fg)' : 'var(--color-muted)',
+        dotFg: i === g ? 'var(--color-primary)' : 'var(--color-muted-fg)',
+      })),
+      active: this.govPhases[g],
+    };
+  }
+
+  slideDefs = [
+    { type: 'NordDesignSystem_c3d703.CoverSlide', label: 'Cover', props: { title: 'FinOps for AI', subtitle: 'A maturity model for controlling AI spend' } },
+    { type: 'NordDesignSystem_c3d703.ChapterSlide', label: 'Part 1 — The Cost Problem', props: { eyebrow: 'Part 1', title: 'The Cost Problem' } },
+    { type: 'NordDesignSystem_c3d703.StatementSlide', label: 'AI spend is not cloud spend', props: { statement: "AI spend doesn't behave like cloud spend." } },
+    { type: 'NordDesignSystem_c3d703.TableSlide', label: 'What changes when AI enters the stack', props: { title: 'What Changes When AI Enters the Stack', columns: ['Dimension', 'Cloud Infrastructure', 'AI Workloads'], rows: [
+      ['Cost driver', 'Provisioned capacity', 'Every prompt and token'],
+      ['Predictability', 'Forecastable, reserved', 'Elastic with usage'],
+      ['Ceiling', 'Capped by reservation', 'Unbounded by default'],
+      ['Ownership', 'Central platform team', 'Every team shipping a feature'],
+    ] } },
+    { type: 'NordDesignSystem_c3d703.ChapterSlide', label: 'Part 2 — Measuring Business Impact', props: { eyebrow: 'Part 2', title: 'Measuring Business Impact' } },
+    { kind: 'flow', label: 'FinOps between business and technology' },
+    { kind: 'scope', label: 'Cost decomposes layer by layer' },
+    { type: 'NordDesignSystem_c3d703.ChapterSlide', label: 'Part 3 — Unit Economics', props: { eyebrow: 'Part 3', title: 'Unit Economics' } },
+    { type: 'NordDesignSystem_c3d703.StatementSlide', label: 'Price a request', props: { statement: "If you can't price a request, you can't manage the budget." } },
+    { type: 'NordDesignSystem_c3d703.TableSlide', label: 'The units worth tracking', props: { title: 'The Units Worth Tracking', columns: ['Unit', 'What It Reveals', 'Who Owns It'], rows: [
+      ['Cost / token', 'Model efficiency and prompt waste', 'ML engineering'],
+      ['Cost / inference', 'Serving and infrastructure efficiency', 'Platform engineering'],
+      ['Cost / query or task', 'Product-level unit economics', 'Product & finance'],
+      ['Cost / active user', 'Whether growth stays profitable', 'Product & finance'],
+    ] } },
+    { type: 'NordDesignSystem_c3d703.ChapterSlide', label: 'Part 4 — Maturity Model', props: { eyebrow: 'Part 4', title: 'A Maturity Model for FinOps on AI' } },
+    { type: 'NordDesignSystem_c3d703.TableSlide', label: 'Four stages of maturity', props: { title: 'Four Stages of Maturity', columns: ['Stage', 'Focus', 'Leadership Question'], rows: [
+      ['1 — Visibility', 'Tag, meter, and attribute spend to models, teams, and products', 'Do we know where the money goes?'],
+      ['2 — Accountability', 'Showback and chargeback tie cost to owners and budgets', 'Who is accountable for it?'],
+      ['3 — Optimization', 'Right-size models, cache, batch, and negotiate rates', 'Are we buying efficiently?'],
+      ['4 — Forecasting & Governance', 'Budgets, guardrails, and unit-cost targets built into planning', 'Can we plan around it?'],
+    ] } },
+    { type: 'NordDesignSystem_c3d703.StatementSlide', label: 'Most are still at stage one', props: { statement: 'Most organizations are still at stage one.' } },
+    { type: 'NordDesignSystem_c3d703.ChapterSlide', label: 'Part 5 — Build a Scope Profile', props: { eyebrow: 'Part 5', title: 'Build a Scope Profile, Step by Step' } },
+    { kind: 'builder', label: 'Interactive: Building a Scope Profile' },
+    { type: 'NordDesignSystem_c3d703.ChapterSlide', label: 'Part 6 — Case Study', props: { eyebrow: 'Part 6', title: 'Case Study: When AI Spend Outruns the Org' } },
+    { type: 'NordDesignSystem_c3d703.StatGridSlide', label: 'The numbers that triggered the review', props: { title: 'The Numbers That Triggered the Review', stats: [
+      { value: '40%', label: 'Of engineering payroll, matched by AI token spend', color: 'var(--color-primary)' },
+      { value: '80%', label: 'Month-over-month growth in token spend', color: 'var(--color-secondary)' },
+      { value: '60%', label: 'Of all spend driven by 10–15% of staff', color: 'var(--color-primary)' },
+      { value: '$50K', label: 'Monthly spend from a single engineer', color: 'var(--color-secondary)' },
+    ],
+      roiText: 'Every dollar of token spend should map to hours saved or output shipped. Left unmanaged, spend scales with usage, not with value, the same $50K engineer may be shipping 10x, or burning budget on trivial tasks.',
+      applyText: 'Instrument spend per employee alongside output metrics before scaling access. Start with the heaviest 10–15% of users, then extend budgets and guardrails org-wide as the ROI signal holds up.',
+    } },
+    { type: 'NordDesignSystem_c3d703.StatementSlide', label: 'The root cause', props: { statement: 'The root cause was not scale. It was the newest, priciest model used for every task.' } },
+    { type: 'NordDesignSystem_c3d703.TableSlide', label: 'What fixed it', props: { title: 'What Fixed It', columns: ['Move', 'Mechanism', 'Result'], rows: [
+      ['Cap vendor spend', 'Hard limits per vendor and per user', 'Ceiling restored'],
+      ['Route by task', 'A router picks the cheapest model that clears the bar', 'Same volume, lower rate'],
+      ['Make it visible', 'Dashboards by team, user, and model', 'Outliers surface in days'],
+      ['Net effect', 'Spend fell from ~40% to ~15% of headcount budget', 'Usage unchanged, waste removed'],
+    ] } },
+    { type: 'NordDesignSystem_c3d703.StatementSlide', label: 'The closing dilemma', props: { statement: "If we can't tie tokens to productivity outside engineering, we may not give everyone access." } },
+    { type: 'NordDesignSystem_c3d703.ChapterSlide', label: 'Part 7 — Governance by ROI', props: { eyebrow: 'Part 7', title: 'Governing Access by Return, Not Rank' } },
+    { kind: 'governance', label: 'Building AI Governance Around ROI' },
+    { type: 'NordDesignSystem_c3d703.TableSlide', label: 'The next 90 days', props: { title: 'The Next 90 Days', columns: ['Action', 'Outcome'], rows: [
+      ['Instrument spend by model, team, and product', 'A real cost baseline'],
+      ['Assign an owner for AI unit economics', 'Accountability instead of surprise'],
+      ['Set a unit-cost target for one flagship AI feature', 'A forecastable, governable metric'],
+    ] } },
+    { type: 'NordDesignSystem_c3d703.ClosingSlide', label: 'Closing', props: { heading: 'Build the practice before the bill forces it', subheading: 'FinOps for AI starts with visibility' } },
+  ];
+
+  flowRows = [
+    { label: 'Business strategy', items: ['Growth targets', 'Margin discipline', 'Risk appetite'] },
+    { label: 'FinOps', items: ['Visibility', 'Accountability', 'Optimization'], accent: true },
+    { label: 'Technology strategy', items: ['Model choice', 'Architecture', 'Platform investment'] },
+    { label: 'Shared outcome', items: ['Unit economics that leadership can forecast'] },
+  ];
+
+  layers = [
+    { num: '01', name: 'Business process', desc: 'The workflow the AI is meant to improve', tag: 'Value' },
+    { num: '02', name: 'Product feature', desc: 'The surface users interact with', tag: 'Adoption' },
+    { num: '03', name: 'Application logic', desc: 'Prompts, retries, chains, and agents', tag: 'Waste' },
+    { num: '04', name: 'Serving infrastructure', desc: 'Compute, caching, batching, and routing', tag: 'Efficiency' },
+    { num: '05', name: 'Model and tokens', desc: 'The unit the vendor actually bills you for', tag: 'Rate' },
+  ];
+
+  personaList = ['Engineering', 'FinOps Practitioner', 'Finance', 'Leadership', 'Procurement', 'Product', 'ITFM', 'ITAM', 'ITSM', 'Security', 'Sustainability'];
+
+  domainList = [
+    { title: 'Understand Usage & Cost', items: ['Data Ingestion', 'Allocation', 'Reporting & Analytics', 'Anomaly Management'] },
+    { title: 'Quantify Business Value', items: ['Planning & Estimating', 'Forecasting', 'Budgeting', 'Unit Economics'] },
+    { title: 'Optimize Usage & Cost', items: ['Architecting for Cloud', 'Rate Optimization', 'Workload Optimization', 'Licensing & SaaS'] },
+  ];
+
+  manageList = ['Practice Operations', 'Policy & Governance', 'Assessment', 'Tools & Services', 'Education & Enablement', 'Invoicing & Chargeback', 'Onboarding Workloads', 'Intersecting Disciplines'];
+
+  steps = [
+    { title: 'Start here', body: 'Follow the steps to see how a Scope profile is built for an AI workload. Click a step number, or use Next step.' },
+    { title: 'Scope Profile', body: 'Identify the Scope profile. Determine which areas of AI spending are crucial for your organization — collaborate with leaders rather than defining it alone.' },
+    { title: 'Business Strategies', body: 'Solidify the business strategies that will impact this Scope. Here the organization is most concerned with innovation and speed of delivery.' },
+    { title: 'Technology Strategies', body: 'Technology strategies require collaboration with Engineering. Apply the Iron Triangle — cost, speed, quality — to make informed trade-offs.' },
+    { title: 'Infrastructure Included', body: 'List every technology and infrastructure source in the Scope: public cloud, SaaS, data center, PaaS, private cloud.' },
+    { title: 'Personas', body: 'Based on the profile, strategies, and infrastructure, select the Core and Allied Personas involved. Here: Engineering, Leadership, Product, Security, and FinOps.' },
+    { title: 'Capabilities', body: 'Select the Capabilities being performed for this Scope. This Scope is new, so information-gathering Capabilities come before optimization.' },
+    { title: 'Cadence and Maturity', body: 'Cadence and maturity follow from the Personas and Capabilities chosen. Fastest cadence to stay ahead of AI spend; low maturity is acceptable for a new Scope.' },
+    { title: 'Summary', body: 'The Scope sets the context for applying the framework — it shapes discussions, sets expectations, and determines the pace at which the practice is implemented.' },
+  ];
+
+  fieldData = [
+    { label: 'Scope Profile', step: 1, lines: ['New App for the Business'] },
+    { label: 'Business Strategies', step: 2, lines: ['Willing to spend more, accept waste, for faster results', 'Support innovation without distracting from R&D', 'Be mindful of carbon output from AI'] },
+    { label: 'Technology Strategies', step: 3, lines: ['Data-center training of AI models', 'Public cloud development and inference', 'Third-party frameworks', 'Kubernetes AI platform for future GenAI apps'] },
+    { label: 'Infrastructure Included', step: 4, lines: ['AWS + Google + OCI (specific accounts)', 'On-premises data center', 'SaaS spend on AI tokens'] },
+    { label: 'Cadence and Maturity', step: 7, lines: ['Fastest cadence', 'Low maturity acceptable'] },
+  ];
+
+  highlightedPersonas = ['Engineering', 'FinOps Practitioner', 'Leadership', 'Product', 'Security'];
+  highlightedCaps = ['Data Ingestion', 'Allocation', 'Reporting & Analytics', 'Anomaly Management', 'Planning & Estimating'];
+  highlightedManage = ['Practice Operations', 'Tools & Services', 'Education & Enablement'];
+
+  govPhases = [
+    { title: 'Measure what we\u2019re getting', owner: 'Finance + IT (the team tracking AI bills)',
+      headline: 'Before deciding who gets what, we find out what we\u2019re already getting for the money.',
+      body: 'For every department using AI, we look at two numbers side by side: what they\u2019re spending, and something concrete it produces, support tickets closed, code shipped, reports written. That comparison is the baseline everything else is built on.',
+      how: 'How, technically: every major AI vendor (OpenAI, Anthropic, Microsoft) has a usage dashboard and a billing API that breaks spend down by user and team, no manual tracking needed. That raw data lands in a spreadsheet or a simple dashboard (e.g. Looker, PowerBI) next to each team\u2019s own output numbers, which they already track today (tickets, tasks, deliverables).',
+      example: 'Example: Support spends \u20ac8K/month on AI and closes 40% more tickets. Legal spends \u20ac6K/month with no measurable change yet, that gap is exactly what this step is meant to surface.',
+      rows: [
+        { text: 'Pull spend per employee and per department from the AI vendor bill', dot: 'var(--color-primary)' },
+        { text: 'Ask each department: what did this actually help you produce?', dot: 'var(--color-primary)' },
+        { text: 'Write it down as one simple number: cost per outcome', dot: 'var(--color-secondary)' },
+      ] },
+    { title: 'Set access levels and spending limits', owner: 'IT + department managers',
+      headline: 'Departments that show real results get access to better tools. Everyone gets a spending cap.',
+      body: 'Think of it like a credit limit: teams that prove AI is paying off graduate to more capable (and more expensive) tools. Every team, regardless of tier, has a hard monthly cap so spend can never run away unnoticed.',
+      how: 'How, technically: most AI vendors let IT set a hard spending limit per team or API key directly in their admin console, once set, usage simply stops or requires approval past that number. No custom software needed to start.',
+      example: 'Example: Support (proven ROI) is approved for the premium model, capped at \u20ac10K/month. Legal (unproven yet) stays on the cheaper model, capped at \u20ac2K/month until their numbers improve.',
+      rows: [
+        { text: 'Teams with proven results get access to stronger AI tools', dot: 'var(--color-primary)' },
+        { text: 'Every team gets a monthly spending cap, no exceptions', dot: 'var(--color-secondary)' },
+        { text: 'Nothing is permanent, tiers are revisited every cycle', dot: 'var(--color-primary)' },
+      ] },
+    { title: 'Meet monthly to check the numbers', owner: 'Finance, IT, and one manager per department',
+      headline: 'A short, recurring meeting, one hour, real decisions, no slides.',
+      body: 'The same small group meets monthly to look at the same report: who\u2019s over budget, who\u2019s proving their AI spend is worth it, and who wants an exception. It\u2019s a working session, not a presentation.',
+      how: 'How, technically: someone doesn\u2019t have to write this report by hand. A tool like Claude (or a similar AI assistant) can be pointed at the raw spend and output data each month and asked to summarize it into the same one-page format every time, turning hours of spreadsheet work into a five-minute review.',
+      example: 'Example: Marketing asks to raise their cap by \u20ac3K to run a new campaign. The group reviews last month\u2019s cost-per-outcome number and approves it on the spot.',
+      rows: [
+        { text: 'Look at spend vs. results for every department, side by side', dot: 'var(--color-primary)' },
+        { text: 'Approve or deny requests to raise a spending cap', dot: 'var(--color-secondary)' },
+        { text: 'Pull access from teams still not showing results', dot: 'var(--color-secondary)' },
+      ] },
+    { title: 'Publish the decisions', owner: 'Finance + IT leadership sign off',
+      headline: 'The outcome of the meeting becomes two documents everyone in the company can see.',
+      body: 'No private decisions. A simple, shared list of which tool tier each department has, and their spending cap, plus updated numbers that feed directly into next month\u2019s meeting.',
+      how: 'How, technically: this can be as simple as one shared page on the company intranet or a shared spreadsheet, updated right after the meeting. No new software is required to start; a dedicated internal tool only becomes worth building once the process is proven.',
+      example: 'Example: An internal page (or even a shared spreadsheet) lists every department, their tool tier, and their monthly cap, updated right after each meeting.',
+      rows: [
+        { text: 'Share which AI tools each department can use', dot: 'var(--color-primary)' },
+        { text: 'Share each department\u2019s monthly spending cap', dot: 'var(--color-primary)' },
+        { text: 'Feed this month\u2019s numbers into next month\u2019s meeting', dot: 'var(--color-secondary)' },
+      ] },
+  ];
+
+  componentDidMount() {
+    this.resize = () => this.setState({ scale: this.computeScale() });
+    window.addEventListener('resize', this.resize);
+    this.onKey = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') this.go(1);
+      if (e.key === 'ArrowLeft') this.go(-1);
+      if (e.key === 'Escape') this.setState({ menuOpen: false });
+    };
+    window.addEventListener('keydown', this.onKey);
+    this.setState({ scale: this.computeScale() });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+    window.removeEventListener('keydown', this.onKey);
+  }
+
+  computeScale() {
+    return Math.min((window.innerWidth - 40) / 1280, (window.innerHeight - 120) / 720, 1);
+  }
+
+  go(delta) {
+    const n = this.slideDefs.length;
+    this.setState(s => ({ index: Math.max(0, Math.min(n - 1, s.index + delta)) }));
+  }
+
+  chip(active) {
+    return active
+      ? { bg: 'var(--color-secondary)', fg: 'var(--color-secondary-fg)', border: 'var(--color-secondary)' }
+      : { bg: 'var(--color-card)', fg: 'var(--color-muted-fg)', border: 'var(--color-border)' };
+  }
+
+  buildBuilder() {
+    const step = this.state.step;
+    const fields = this.fieldData.map(f => {
+      const filled = step >= f.step;
+      const active = step === f.step;
+      return {
+        label: f.label,
+        grow: filled ? f.lines.length : 1,
+        border: active ? 'var(--color-primary)' : 'var(--color-border)',
+        labelColor: active ? 'var(--color-primary)' : 'var(--color-muted-fg)',
+        lines: filled
+          ? f.lines.map(t => ({ text: t, color: 'var(--color-secondary)' }))
+          : [{ text: 'type your text here', color: 'var(--color-muted-fg)' }],
+      };
+    });
+    const personasOn = step >= 5;
+    const capsOn = step >= 6;
+    const manageOn = step >= 6;
+    return {
+      stepLabel: step === 0 ? 'Start' : (step === 8 ? 'Summary' : 'Step ' + step),
+      stepTitle: this.steps[step].title,
+      body: this.steps[step].body,
+      fields,
+      personaHeadColor: step === 5 ? 'var(--color-primary)' : 'var(--color-muted-fg)',
+      personas: this.personaList.map(n => ({ name: n, ...this.chip(personasOn && this.highlightedPersonas.includes(n)) })),
+      domains: this.domainList.map(d => ({
+        title: d.title,
+        items: d.items.map(n => ({ name: n, ...this.chip(capsOn && this.highlightedCaps.includes(n)) })),
+      })),
+      manage: this.manageList.map(n => ({ name: n, ...this.chip(manageOn && this.highlightedManage.includes(n)) })),
+      steps: this.steps.map((s, i) => ({
+        label: i === 0 ? '\u25B6' : (i === 8 ? '\u2713' : String(i)),
+        go: () => this.setState({ step: i }),
+        bg: i === step ? 'var(--color-primary)' : 'var(--color-card)',
+        fg: i === step ? 'var(--color-primary-fg)' : 'var(--color-muted-fg)',
+        border: i === step ? 'var(--color-primary)' : 'var(--color-border)',
+      })),
+      advanceLabel: step === 0 ? 'Start' : (step === 8 ? 'Start again' : 'Next step'),
+      advance: () => this.setState(s => ({ step: s.step >= 8 ? 0 : s.step + 1 })),
+    };
+  }
+
+  renderVals() {
+    const theme = this.state.theme;
+    const total = this.slideDefs.length;
+    const slides = this.slideDefs.map((s, i) => ({
+      type: s.type,
+      display: i === this.state.index ? 'block' : 'none',
+      isFlow: s.kind === 'flow',
+      isScope: s.kind === 'scope',
+      isBuilder: s.kind === 'builder',
+      isTable: s.type === 'NordDesignSystem_c3d703.TableSlide',
+      isStatGrid: s.type === 'NordDesignSystem_c3d703.StatGridSlide',
+      isGovernance: s.kind === 'governance',
+      isDs: !s.kind && s.type !== 'NordDesignSystem_c3d703.TableSlide' && s.type !== 'NordDesignSystem_c3d703.StatGridSlide',
+      pageNumber: i + 1,
+      totalPages: total,
+      theme,
+      stackRows: s.kind === 'flow' ? this.flowRows.map(r => ({
+        label: r.label,
+        items: r.items.map(t => ({
+          label: t,
+          bg: r.accent ? 'var(--color-secondary)' : 'var(--color-muted)',
+          fg: r.accent ? 'var(--color-secondary-fg)' : 'var(--color-fg)',
+        })),
+      })) : [],
+      layers: s.kind === 'scope' ? this.layers.map((l, li) => ({
+        ...l,
+        accent: (li % 2 === 1) ? 'var(--color-secondary)' : 'var(--color-primary)',
+        tagBg: (li % 2 === 1) ? 'var(--color-secondary)' : 'var(--color-muted)',
+        tagFg: (li % 2 === 1) ? 'var(--color-secondary-fg)' : 'var(--color-muted-fg)',
+      })) : [],
+      props: { ...s.props, pageNumber: i + 1, totalPages: total, theme },
+    }));
+    return {
+      slides,
+      theme,
+      themeLabel: theme === 'light' ? 'Dark' : 'Light',
+      toggleTheme: () => this.setState(s => ({ theme: s.theme === 'light' ? 'dark' : 'light' })),
+      scale: this.state.scale,
+      scaledW: Math.round(1280 * this.state.scale),
+      scaledH: Math.round(720 * this.state.scale),
+      builder: this.buildBuilder(),
+      gov: this.buildGov(),
+      counterLabel: `${String(this.state.index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`,
+      prev: () => this.go(-1),
+      next: () => this.go(1),
+      menuDisplay: this.state.menuOpen ? 'flex' : 'none',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      menuItems: this.slideDefs.map((s, i) => ({
+        num: String(i + 1).padStart(2, '0'),
+        label: s.label,
+        indent: s.type === 'NordDesignSystem_c3d703.ChapterSlide' ? '12px' : '30px',
+        bg: i === this.state.index ? 'var(--color-muted)' : 'transparent',
+        fg: i === this.state.index ? 'var(--color-secondary)' : 'var(--color-fg)',
+        go: () => this.setState({ index: i, menuOpen: false }),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

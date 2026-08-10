@@ -43,12 +43,41 @@
   a.card:hover{border-color:var(--gold)}
   a.card b{font-weight:600}
   a.card span{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.1em;white-space:nowrap}
+  /* featured card */
+  .featured-card{display:flex;align-items:center;gap:1.2rem;text-decoration:none;color:var(--ink);
+    background:color-mix(in oklch, var(--secondary) 6%, var(--panel));
+    border:2px solid var(--secondary);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:.7rem;
+    box-shadow:0 4px 20px oklch(0% 0 0 / 0.1);transition:transform .15s,box-shadow .15s}
+  .featured-card:hover{transform:translateY(-1px);box-shadow:0 8px 28px oklch(0% 0 0 / 0.14)}
+  .fc-thumb{width:100px;height:66px;object-fit:cover;border-radius:8px;border:1px solid var(--secondary);flex:0 0 auto;background:var(--bg)}
+  .fc-body{display:flex;flex-direction:column;gap:.3rem;flex:1;min-width:0}
+  .fc-badge{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--secondary);
+    background:color-mix(in oklch, var(--secondary) 16%, transparent);border:1px solid var(--secondary);
+    border-radius:999px;padding:.15rem .55rem;width:fit-content}
+  .fc-title{font-size:1.1rem;font-weight:700}
+  .fc-sub{font-family:var(--sans);font-size:.82rem;color:var(--muted);font-weight:400}
+  .fc-arrow{font-family:var(--mono);color:var(--secondary);font-size:1.2rem;flex:0 0 auto}
+  @media(max-width:640px){
+    .featured-card{flex-wrap:wrap;padding:1rem}
+    .fc-thumb{width:72px;height:48px}
+  }
 </style>
 </head>
 <body>
   <div class="kicker">AI STRATEGY MATERIALS · 2026</div>
   <h1>AI Mindset in 12 Months</h1>
   <p class="sub">One-page programme overviews, supporting strategy decks, and an EU AI governance briefing.</p>
+
+  <h2 style="color:var(--secondary)">Featured</h2>
+  <a class="featured-card" href="finops-for-ai.dc.html">
+    <img src="finops-thumbnail.webp" alt="" class="fc-thumb">
+    <div class="fc-body">
+      <span class="fc-badge">FEATURED · INTERACTIVE DECK</span>
+      <span class="fc-title">FinOps for AI</span>
+      <span class="fc-sub">Cost governance and shared ownership for AI workloads</span>
+    </div>
+    <span class="fc-arrow">→</span>
+  </a>
 
   <h2>Overview · one page</h2>
   <a class="card" href="ai-mindset-overview-en.html"><b>Programme overview</b><span>EN</span></a>
@@ -58,7 +87,7 @@
   <a class="card" href="ai-mindset-deck-en.html"><b>From AI tools to an AI mindset</b><span>EN</span></a>
   <a class="card" href="ai-mindset-deck-de.html"><b>Von KI-Tools zum KI-Mindset</b><span>DE</span></a>
 
-  <h2>Briefing · 16 slides</h2>
+  <h2>Briefing · 5 slides</h2>
   <a class="card" href="ai-governance-europe-deck.html"><b>AI Governance in Europe: laws &amp; best practices</b><span>EN</span></a>
 
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme"></button>
