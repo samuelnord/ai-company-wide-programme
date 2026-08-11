@@ -452,7 +452,10 @@ class Component extends DCLogic {
   }
 
   computeScale() {
-    return Math.min((window.innerWidth - 40) / 1280, (window.innerHeight - 120) / 720, 1.6);
+    const mobile = window.innerWidth <= 600;
+    const wPad = mobile ? 12 : 40;
+    const hPad = mobile ? 84 : 120;
+    return Math.min((window.innerWidth - wPad) / 1280, (window.innerHeight - hPad) / 720, 1.6);
   }
 
   go(delta) {
